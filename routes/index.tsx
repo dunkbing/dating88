@@ -1,25 +1,25 @@
 import { Head } from '$fresh/runtime.ts';
-import Counter from '@/islands/Counter.tsx';
 import { Layout } from '@/islands/Nav.tsx';
+import Gap from '@/components/Gap.tsx';
+import PrimaryTab from '@/islands/PrimaryTab.tsx';
+import SecondaryTab from '@/islands/SecondaryTab.tsx';
 
 export default function Home() {
   return (
     <Layout>
       <div>
         <Head>
-          <title>Fresh App</title>
+          <title>Hẹn Hò</title>
         </Head>
-        <div class="p-4 mx-auto max-w-screen-md">
-          <img
-            src="/logo.svg"
-            class="w-32 h-32"
-            alt="the fresh logo: a sliced lemon dripping with juice"
-          />
-          <p class="my-6">
-            Welcome to `fresh`. Try updating this message in the
-            ./routes/index.tsx file, and refresh.
-          </p>
-          <Counter start={3} />
+        <div class="p-4 mx-auto max-w-screen-xl flex">
+          <div class="w-2/3">
+            <PrimaryTab title="Tim ban gai" />
+          </div>
+          <div class="w-1/3">
+            <SecondaryTab title="Mới đăng ký" />
+            <Gap />
+            <SecondaryTab title="Xem nhiều nhất" />
+          </div>
         </div>
       </div>
     </Layout>

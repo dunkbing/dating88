@@ -6,13 +6,12 @@ import { JSX } from 'preact/jsx-runtime';
 const Nav = () => {
   const ref = useRef(window);
   const [navOpen, setNavOpen] = useState(false);
-  const LINK_STYLE = tw`block mt-4 md:inline-block md:mt-0 hover:text-white`;
-  const NAV_STYLE = tw`w-full block flex-grow md:flex md:items-center md:w-auto`;
-  const NAV_LINKS_STYLE = tw`text-sm md:flex-grow`;
-  const BUTTON_STYLE = tw`inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:bg-yellow-400 mt-4 md:mt-0`;
+  const linkStyle = tw`block mt-4 md:inline-block md:mt-0 hover:text-purple-500 text-white font-semibold`;
+  const navStyle = tw`w-full block flex-grow md:flex md:items-center md:w-auto`;
+  const navLinksStyle = tw`text-sm md:flex-grow`;
+  const buttonStyle = tw`inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:bg-yellow-400 mt-4 md:mt-0`;
 
   useEffect(() => {
-    // const url = new URL(ref.current.location.href);
     let lastKnownWidth = 0;
     let ticking = false;
     const doSomething = (width: number) => {
@@ -23,6 +22,7 @@ const Nav = () => {
         setNavOpen(false);
       }
     };
+
     const onResize = (_: UIEvent) => {
       lastKnownWidth = ref.current.innerWidth;
       if (!ticking) {
@@ -33,16 +33,18 @@ const Nav = () => {
         ticking = true;
       }
     };
+
     doSomething(ref.current.innerWidth);
     ref.current.addEventListener('resize', onResize);
+
     return () => {
       ref.current.removeEventListener('resize', onResize);
     };
   }, []);
 
   return (
-    <div class="bg-yellow-500">
-      <nav class="flex items-center justify-between flex-wrap p-6 max-w-screen-md mx-auto">
+    <div class="bg-pink-500">
+      <nav class="flex items-center justify-between flex-wrap p-4 max-w-screen-md mx-auto">
         <div class="flex items-center flex-shrink-0 text-white mr-6">
           <a href="/">
             <img
@@ -52,9 +54,7 @@ const Nav = () => {
             />
           </a>
           <a href="/">
-            <span class="font-semibold text-xl tracking-tight">
-              Fresh Strapi
-            </span>
+            <span class="font-semibold text-xl tracking-tight">Hẹn Hò</span>
           </a>
         </div>
         <div class="block md:hidden">
@@ -75,20 +75,20 @@ const Nav = () => {
           </button>
         </div>
         {navOpen ? (
-          <div class={NAV_STYLE}>
-            <div class={NAV_LINKS_STYLE}>
-              <a href="/login" class={tw`${LINK_STYLE} mr-4`}>
+          <div class={navStyle}>
+            <div class={navLinksStyle}>
+              <a href="/login" class={tw`${linkStyle} mr-4`}>
                 Login
               </a>
-              <a href="/logout" class={tw`${LINK_STYLE} mr-4`}>
+              <a href="/logout" class={tw`${linkStyle} mr-4`}>
                 Logout
               </a>
-              <a href="/account" class={tw`${LINK_STYLE}`}>
+              <a href="/account" class={tw`${linkStyle}`}>
                 Account
               </a>
             </div>
             <div>
-              <a href="/signup" class={BUTTON_STYLE}>
+              <a href="/signup" class={buttonStyle}>
                 Signup
               </a>
             </div>
