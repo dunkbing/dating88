@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import { tw } from 'twind';
 import { asset } from '$fresh/runtime.ts';
 import { JSX } from 'preact/jsx-runtime';
+import { Footer } from '@/components/Footer.tsx';
 
 const Nav = () => {
   const ref = useRef(window);
@@ -114,6 +115,7 @@ export const Layout = ({ children }: LayoutProps) => {
     <>
       <Nav />
       {children}
+      <Footer />
       {/* {DENO_ENV === 'development' ? (
         <pre>{JSON.stringify(data, null, 2)}</pre>
       ) : (
