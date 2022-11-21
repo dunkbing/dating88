@@ -1,7 +1,7 @@
-import { JSX } from 'preact/jsx-runtime';
-import { Handlers, PageProps } from '$fresh/server.ts';
-import Login from '@/islands/LoginForm.tsx';
-import { Layout } from '@/islands/Nav.tsx';
+import { JSX } from "preact/jsx-runtime";
+import { Handlers, PageProps } from "$fresh/server.ts";
+import Login from "@/islands/LoginForm.tsx";
+import { Layout } from "@/islands/Nav.tsx";
 
 interface Query {
   error: Error | null;
@@ -55,7 +55,7 @@ const PageLogin = ({ data }: PageProps<Query>) => {
             <h2 class="mt-6 mb-8 text-center text-3xl tracking-tight font-bold text-gray-900">
               Sign in to your account
             </h2>
-            {error ? <p class="text-red-500">{error.message}</p> : ''}
+            {error ? <p class="text-red-500">{error.message}</p> : ""}
           </div>
           <Login />
           <LoginOAuth provider="github">Sign in with Github</LoginOAuth>

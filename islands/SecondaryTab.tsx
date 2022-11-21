@@ -1,5 +1,5 @@
-import { SecondaryProfileCard } from '@/components/cards/index.ts';
-import { Tab } from '@/components/Tab.tsx';
+import { Tab } from "@/components/Tab.tsx";
+import SecondaryProfileCard from "@/islands/SecondaryProfileCard.tsx";
 
 interface Props {
   title: string;

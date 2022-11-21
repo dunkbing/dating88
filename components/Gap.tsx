@@ -1,4 +1,4 @@
-import { JSX } from 'preact/jsx-runtime';
+import { JSX } from "preact/jsx-runtime";
 
 const Gap = (): JSX.Element => <div style={{ width: 20, height: 20 }} />;
 

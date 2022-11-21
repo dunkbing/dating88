@@ -1,10 +1,10 @@
-import { JSX } from 'preact';
+import { JSX } from "preact";
 
 export function Footer(props: JSX.HTMLAttributes<HTMLButtonElement>) {
   return (
     <footer class="p-4 flex items-center justify-between md:p-6 border-t-4 border-pink-500 max-w-screen-xl mx-auto">
       <span class="text-sm text-gray-500 sm:text-center">
-        © 2022{' '}
+        © 2022{" "}
         <a href="https://flowbite.com/" class="hover:underline">
           Hen ho
         </a>

@@ -1,10 +1,10 @@
-import { config } from '$std/dotenv/mod.ts';
-import { cleanEnv, str, url } from 'envalid';
+import { config } from "$std/dotenv/mod.ts";
+import { cleanEnv, str, url } from "envalid";
 
 const RAW_ENV = Object.assign(Deno.env.toObject(), await config());
 
 const ENV = cleanEnv(RAW_ENV, {
-  DENO_ENV: str({ choices: ['development', 'testing', 'production'] }),
+  DENO_ENV: str({ choices: ["development", "testing", "production"] }),
   BASE_URL: url(),
   SUPABASE_URL: url(),
   SUPABASE_ANON_KEY: str(),

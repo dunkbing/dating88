@@ -3,6 +3,7 @@ import { tw } from 'twind';
 import { asset } from '$fresh/runtime.ts';
 import { JSX } from 'preact/jsx-runtime';
 import { Footer } from '@/components/Footer.tsx';
+import { DENO_ENV } from '@/utils/config.ts';
 
 const Nav = () => {
   const ref = useRef(window);
@@ -79,10 +80,10 @@ const Nav = () => {
           <div class={navStyle}>
             <div class={navLinksStyle}>
               <a href="/find-partner/female" class={tw`${linkStyle} mr-4`}>
-                Tim ban gai
+                Tìm bạn gái
               </a>
               <a href="/find-partner/male" class={tw`${linkStyle} mr-4`}>
-                Tim ban trai
+                Tìm bạn trai
               </a>
               <a href="/find-partner/les" class={tw`${linkStyle} mr-4`}>
                 Les
@@ -116,17 +117,17 @@ interface LayoutProps {
   data?: any;
 }
 
-export const Layout = ({ children }: LayoutProps) => {
+export const Layout = ({ children, data }: LayoutProps) => {
   return (
     <>
       <Nav />
       {children}
       <Footer />
-      {/* {DENO_ENV === 'development' ? (
+      {DENO_ENV === 'development' ? (
         <pre>{JSON.stringify(data, null, 2)}</pre>
       ) : (
         ''
-      )} */}
+      )}
     </>
   );
 };

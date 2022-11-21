@@ -1,8 +1,6 @@
-import { JSX } from 'preact';
+import { JSX } from "preact";
 
-export function SecondaryProfileCard(
-  props: JSX.HTMLAttributes<HTMLButtonElement>
-) {
+function SecondaryProfileCard(props: JSX.HTMLAttributes<HTMLButtonElement>) {
   return (
     <>
       <div className="w-full lg:flex my-1">
@@ -22,3 +20,5 @@ export function SecondaryProfileCard(
     </>
   );
 }
+
+export default SecondaryProfileCard;

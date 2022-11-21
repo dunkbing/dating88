@@ -1,9 +1,9 @@
-import { Head } from '$fresh/runtime.ts';
-import { Layout } from '@/islands/Nav.tsx';
-import Gap from '@/components/Gap.tsx';
-import SecondaryTab from '@/islands/SecondaryTab.tsx';
-import Profile from '../../islands/Profile.tsx';
-import { Handlers, PageProps } from '$fresh/server.ts';
+import { Head } from "$fresh/runtime.ts";
+import { Layout } from "@/islands/Nav.tsx";
+import Gap from "@/components/Gap.tsx";
+import SecondaryTab from "@/islands/SecondaryTab.tsx";
+import Profile from "../../islands/Profile.tsx";
+import { Handlers, PageProps } from "$fresh/server.ts";
 
 interface Query {
   message: string;
@@ -15,7 +15,7 @@ export const handler: Handlers<Query> = {
     // if (!data.product) {
     //   return new Response("Product not found", { status: 404 });
     // }
-    return ctx.render({ message: 'ok' });
+    return ctx.render({ message: "ok" });
   },
 };
 
