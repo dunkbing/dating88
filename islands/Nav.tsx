@@ -10,7 +10,7 @@ const Nav = () => {
   const linkStyle = tw`block mt-4 md:inline-block md:mt-0 hover:text-purple-500 text-white font-semibold`;
   const navStyle = tw`w-full block flex-grow md:flex md:items-center md:w-auto`;
   const navLinksStyle = tw`text-sm md:flex-grow`;
-  const buttonStyle = tw`inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:bg-yellow-400 mt-4 md:mt-0`;
+  const buttonStyle = tw`inline-block text-sm px-4 py-2 mx-1 leading-none border rounded text-white border-white hover:border-transparent hover:bg-pink-400 mt-4 md:mt-0`;
 
   useEffect(() => {
     let lastKnownWidth = 0;
@@ -60,7 +60,7 @@ const Nav = () => {
         </div>
         <div class="block md:hidden">
           <button
-            class="flex items-center px-3 py-2 border rounded text-white hover:border-yellow-400 hover:bg-yellow-400 focus:outline-none"
+            class="flex items-center px-3 py-2 border rounded text-white hover:border-pink-400 hover:bg-pink-400 focus:outline-none"
             onClick={() => {
               setNavOpen(!navOpen);
             }}
@@ -78,17 +78,23 @@ const Nav = () => {
         {navOpen ? (
           <div class={navStyle}>
             <div class={navLinksStyle}>
-              <a href="/login" class={tw`${linkStyle} mr-4`}>
-                Login
+              <a href="/find-partner/female" class={tw`${linkStyle} mr-4`}>
+                Tim ban gai
               </a>
-              <a href="/logout" class={tw`${linkStyle} mr-4`}>
-                Logout
+              <a href="/find-partner/male" class={tw`${linkStyle} mr-4`}>
+                Tim ban trai
               </a>
-              <a href="/account" class={tw`${linkStyle}`}>
-                Account
+              <a href="/find-partner/les" class={tw`${linkStyle} mr-4`}>
+                Les
+              </a>
+              <a href="/find-partner/gay" class={tw`${linkStyle}`}>
+                Gay
               </a>
             </div>
             <div>
+              <a href="/login" class={buttonStyle}>
+                Login
+              </a>
               <a href="/signup" class={buttonStyle}>
                 Signup
               </a>

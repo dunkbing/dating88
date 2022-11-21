@@ -7,12 +7,17 @@ import * as $0 from "./routes/[name].tsx";
 import * as $1 from "./routes/api/joke.ts";
 import * as $2 from "./routes/find-partner/[criteria].tsx";
 import * as $3 from "./routes/index.tsx";
-import * as $4 from "./routes/profile/[id].tsx";
+import * as $4 from "./routes/login/[provider].tsx";
+import * as $5 from "./routes/login/index.tsx";
+import * as $6 from "./routes/profile/[id].tsx";
+import * as $7 from "./routes/signup.tsx";
 import * as $$0 from "./islands/Counter.tsx";
-import * as $$1 from "./islands/Nav.tsx";
-import * as $$2 from "./islands/PrimaryTab.tsx";
-import * as $$3 from "./islands/Profile.tsx";
-import * as $$4 from "./islands/SecondaryTab.tsx";
+import * as $$1 from "./islands/LoginForm.tsx";
+import * as $$2 from "./islands/Nav.tsx";
+import * as $$3 from "./islands/PrimaryTab.tsx";
+import * as $$4 from "./islands/Profile.tsx";
+import * as $$5 from "./islands/SecondaryTab.tsx";
+import * as $$6 from "./islands/SignupForm.tsx";
 
 const manifest = {
   routes: {
@@ -20,14 +25,19 @@ const manifest = {
     "./routes/api/joke.ts": $1,
     "./routes/find-partner/[criteria].tsx": $2,
     "./routes/index.tsx": $3,
-    "./routes/profile/[id].tsx": $4,
+    "./routes/login/[provider].tsx": $4,
+    "./routes/login/index.tsx": $5,
+    "./routes/profile/[id].tsx": $6,
+    "./routes/signup.tsx": $7,
   },
   islands: {
     "./islands/Counter.tsx": $$0,
-    "./islands/Nav.tsx": $$1,
-    "./islands/PrimaryTab.tsx": $$2,
-    "./islands/Profile.tsx": $$3,
-    "./islands/SecondaryTab.tsx": $$4,
+    "./islands/LoginForm.tsx": $$1,
+    "./islands/Nav.tsx": $$2,
+    "./islands/PrimaryTab.tsx": $$3,
+    "./islands/Profile.tsx": $$4,
+    "./islands/SecondaryTab.tsx": $$5,
+    "./islands/SignupForm.tsx": $$6,
   },
   baseUrl: import.meta.url,
   config,

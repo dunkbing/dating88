@@ -8,6 +8,9 @@
     "@preact/signals": "https://esm.sh/*@preact/signals@1.0.3",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.0.1",
     "twind": "https://esm.sh/twind@0.16.17",
-    "twind/": "https://esm.sh/twind@0.16.17/"
+    "twind/": "https://esm.sh/twind@0.16.17/",
+    "envalid": "https://deno.land/x/envalid@0.1.2/mod.ts",
+    "$std/": "https://deno.land/std@0.165.0/",
+    "supabase": "https://esm.sh/@supabase/supabase-js@2.1.0"
   }
 }
