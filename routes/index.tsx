@@ -3,9 +3,6 @@ import { Layout } from '@/islands/Nav.tsx';
 import Gap from '@/components/Gap.tsx';
 import PrimaryTab from '@/islands/PrimaryTab.tsx';
 import SecondaryTab from '@/islands/SecondaryTab.tsx';
-import ENV from '../utils/config.ts';
-
-console.log(ENV);
 
 export default function Home() {
   return (
