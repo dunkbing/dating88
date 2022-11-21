@@ -1,13 +1,13 @@
-import { Head } from '$fresh/runtime.ts';
-import { Handlers, PageProps } from '$fresh/server.ts';
-import Gap from '@/components/Gap.tsx';
-import { Layout } from '@/islands/Nav.tsx';
-import PrimaryTab from '@/islands/PrimaryTab.tsx';
-import SecondaryTab from '@/islands/SecondaryTab.tsx';
-import { supabaseClient } from '@/utils/supabase.ts';
-import { Gender, Profile, Status, tables, Target } from '@/utils/types.ts';
-import { citySlugs } from '@/utils/cities.ts';
-import { redirect } from '@/utils/mod.ts';
+import { Head } from "$fresh/runtime.ts";
+import { Handlers, PageProps } from "$fresh/server.ts";
+import Gap from "@/components/Gap.tsx";
+import { Layout } from "@/islands/Nav.tsx";
+import PrimaryTab from "@/islands/PrimaryTab.tsx";
+import SecondaryTab from "@/islands/SecondaryTab.tsx";
+import { supabaseClient } from "@/utils/supabase.ts";
+import { Gender, Profile, Status, tables, Target } from "@/utils/types.ts";
+import { citySlugs } from "@/utils/cities.ts";
+import { redirect } from "@/utils/mod.ts";
 
 interface Query {
   profiles: Profile[];
@@ -17,19 +17,19 @@ function getProfiles(criteria: string) {
   const query = supabaseClient
     .from(tables.profiles)
     .select(
-      'id, firstname, lastname, gender, status, target, description, views, cities(*)'
+      "id, firstname, lastname, gender, status, target, description, views, cities(*)",
     );
   switch (true) {
     case Object.values(Gender).includes(criteria as Gender):
-      return query.eq('gender', criteria);
+      return query.eq("gender", criteria);
     case Object.values(Status).includes(criteria as Status):
-      return query.eq('status', criteria);
+      return query.eq("status", criteria);
     case Object.values(Target).includes(criteria as Target):
-      return query.eq('target', criteria);
+      return query.eq("target", criteria);
     case citySlugs.includes(criteria):
-      return query.eq('cities.slug', criteria);
+      return query.eq("cities.slug", criteria);
     default:
-      throw new Error('Da xay ra loi');
+      throw new Error("Da xay ra loi");
   }
 }
 
@@ -39,20 +39,19 @@ export const handler: Handlers<Query> = {
     try {
       const query = getProfiles(criteria);
       const { data } = await query.range(0, 10);
-      const profiles: Profile[] =
-        data?.map((d) => ({
-          id: d.id,
-          fullname: `${d.lastname} ${d.firstname}`,
-          gender: d.gender,
-          target: d.target,
-          status: d.status,
-          description: d.description,
-          city: d.cities,
-        })) || [];
+      const profiles: Profile[] = data?.map((d) => ({
+        id: d.id,
+        fullname: `${d.lastname} ${d.firstname}`,
+        gender: d.gender,
+        target: d.target,
+        status: d.status,
+        description: d.description,
+        city: d.cities,
+      })) || [];
 
       return ctx.render({ profiles });
     } catch (error) {
-      return redirect('/');
+      return redirect("/");
     }
   },
 };
@@ -70,9 +69,9 @@ export default function (ctx: PageProps<Query>) {
             <PrimaryTab title="Tim ban gai" profiles={profiles} />
           </div>
           <div class="w-1/3">
-            <SecondaryTab title="Thành viên mới" />
+            <SecondaryTab title="Thành viên mới" type="newest" />
             <Gap />
-            <SecondaryTab title="Xem nhiều nhất" />
+            <SecondaryTab title="Xem nhiều nhất" type="most-views" />
           </div>
         </div>
       </div>

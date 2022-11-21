@@ -1,17 +1,27 @@
-import { useEffect, useRef, useState } from 'preact/hooks';
-import { tw } from 'twind';
-import { asset } from '$fresh/runtime.ts';
-import { JSX } from 'preact/jsx-runtime';
-import { Footer } from '@/components/Footer.tsx';
-// import { DENO_ENV } from '@/utils/config.ts';
+import { useEffect, useRef, useState } from "preact/hooks";
+import { tw } from "twind";
+import { asset } from "$fresh/runtime.ts";
+import { JSX } from "preact/jsx-runtime";
+import { Footer } from "@/components/Footer.tsx";
 
 const Nav = () => {
+  useEffect(() => {
+    const fetchData = () => {
+      fetch("/api/joke")
+        .then((res) => res.text())
+        .then(console.log)
+        .catch(console.error);
+    };
+    fetchData();
+  }, []);
   const ref = useRef(window);
   const [navOpen, setNavOpen] = useState(false);
-  const linkStyle = tw`block mt-4 md:inline-block md:mt-0 hover:text-purple-500 text-white font-semibold`;
+  const linkStyle =
+    tw`block mt-4 md:inline-block md:mt-0 hover:text-purple-500 text-white font-semibold`;
   const navStyle = tw`w-full block flex-grow md:flex md:items-center md:w-auto`;
   const navLinksStyle = tw`text-sm md:flex-grow`;
-  const buttonStyle = tw`inline-block text-sm px-4 py-2 mx-1 leading-none border rounded text-white border-white hover:border-transparent hover:bg-pink-400 mt-4 md:mt-0`;
+  const buttonStyle =
+    tw`inline-block text-sm px-4 py-2 mx-1 leading-none border rounded text-white border-white hover:border-transparent hover:bg-pink-400 mt-4 md:mt-0`;
 
   useEffect(() => {
     let lastKnownWidth = 0;
@@ -36,10 +46,10 @@ const Nav = () => {
     };
 
     doSomething(ref.current.innerWidth);
-    ref.current.addEventListener('resize', onResize);
+    ref.current.addEventListener("resize", onResize);
 
     return () => {
-      ref.current.removeEventListener('resize', onResize);
+      ref.current.removeEventListener("resize", onResize);
     };
   }, []);
 
@@ -49,7 +59,7 @@ const Nav = () => {
         <div class="flex items-center flex-shrink-0 text-white mr-6">
           <a href="/">
             <img
-              src={asset('/logo.svg')}
+              src={asset("/logo.svg")}
               width={30}
               alt="the fresh logo: a sliced lemon dripping with juice"
             />
@@ -75,34 +85,36 @@ const Nav = () => {
             </svg>
           </button>
         </div>
-        {navOpen ? (
-          <div class={navStyle}>
-            <div class={navLinksStyle}>
-              <a href="/find-partner/female" class={tw`${linkStyle} mr-4`}>
-                Tìm bạn gái
-              </a>
-              <a href="/find-partner/male" class={tw`${linkStyle} mr-4`}>
-                Tìm bạn trai
-              </a>
-              <a href="/find-partner/les" class={tw`${linkStyle} mr-4`}>
-                Les
-              </a>
-              <a href="/find-partner/gay" class={tw`${linkStyle}`}>
-                Gay
-              </a>
+        {navOpen
+          ? (
+            <div class={navStyle}>
+              <div class={navLinksStyle}>
+                <a href="/find-partner/female" class={tw`${linkStyle} mr-4`}>
+                  Tìm bạn gái
+                </a>
+                <a href="/find-partner/male" class={tw`${linkStyle} mr-4`}>
+                  Tìm bạn trai
+                </a>
+                <a href="/find-partner/les" class={tw`${linkStyle} mr-4`}>
+                  Les
+                </a>
+                <a href="/find-partner/gay" class={tw`${linkStyle}`}>
+                  Gay
+                </a>
+              </div>
+              <div>
+                <a href="/login" class={buttonStyle}>
+                  Login
+                </a>
+                <a href="/signup" class={buttonStyle}>
+                  Signup
+                </a>
+              </div>
             </div>
-            <div>
-              <a href="/login" class={buttonStyle}>
-                Login
-              </a>
-              <a href="/signup" class={buttonStyle}>
-                Signup
-              </a>
-            </div>
-          </div>
-        ) : (
-          ''
-        )}
+          )
+          : (
+            ""
+          )}
       </nav>
     </div>
   );
@@ -122,11 +134,13 @@ export const Layout = ({ children, data }: LayoutProps) => {
       <Nav />
       {children}
       <Footer />
-      {/* {DENO_ENV === 'development' ? (
+      {
+        /* {DENO_ENV === 'development' ? (
         <pre>{JSON.stringify(data, null, 2)}</pre>
       ) : (
         ''
-      )} */}
+      )} */
+      }
     </>
   );
 };

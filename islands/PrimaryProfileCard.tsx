@@ -1,4 +1,4 @@
-import { genderMap, Profile, statusMap, targetMap } from '@/utils/types.ts';
+import { genderMap, Profile, statusMap, targetMap } from "@/utils/types.ts";
 
 type Props = Profile;
 
@@ -31,7 +31,10 @@ export default function PrimaryProfileCard(props: Props) {
           />
         </div>
         <div className="border-r border-b border-l border-gray-50 lg:border-l-0 lg:border-t bg-white rounded-b lg:rounded-r pl-4">
-          <a class="text-xl text-purple-800 font-semibold" href="/profile/1">
+          <a
+            class="text-xl text-purple-800 font-semibold capitalize"
+            href="/profile/1"
+          >
             {props.fullname} - 32
           </a>
           <div class="font-medium flex items-center space-x-2">
@@ -42,7 +45,7 @@ export default function PrimaryProfileCard(props: Props) {
               </>
             ))}
           </div>
-          <p className="text-gray-900 text-lg">{props.description}</p>
+          <p className="text-gray-900 text-lg w-11/12">{props.description}</p>
         </div>
       </div>
     </>

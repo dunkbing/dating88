@@ -1,12 +1,12 @@
-import { Head } from '$fresh/runtime.ts';
-import { Layout } from '@/islands/Nav.tsx';
-import Gap from '@/components/Gap.tsx';
-import SecondaryTab from '@/islands/SecondaryTab.tsx';
-import ProfileCpn from '@/islands/Profile.tsx';
-import { Handlers, PageProps } from '$fresh/server.ts';
-import { Profile } from '@/utils/types.ts';
-import { supabaseClient } from '@/utils/supabase.ts';
-import { redirect } from '@/utils/mod.ts';
+import { Head } from "$fresh/runtime.ts";
+import { Layout } from "@/islands/Nav.tsx";
+import Gap from "@/components/Gap.tsx";
+import SecondaryTab from "@/islands/SecondaryTab.tsx";
+import ProfileCpn from "@/islands/Profile.tsx";
+import { Handlers, PageProps } from "$fresh/server.ts";
+import { Profile } from "@/utils/types.ts";
+import { supabaseClient } from "@/utils/supabase.ts";
+import { redirect } from "@/utils/mod.ts";
 
 interface Query {
   profile: Profile;
@@ -16,23 +16,24 @@ export const handler: Handlers<Query> = {
   async GET(_req, ctx) {
     const { id } = ctx.params;
     const { data } = await supabaseClient
-      .from('profiles')
+      .from("profiles")
       .select(
-        'id, firstname, lastname, gender, status, target, description, views, cities(*)'
+        "id, firstname, lastname, gender, status, target, description, views, date_of_birth, height, weight, cities(*)",
       )
-      .eq('id', Number(id))
+      .eq("id", Number(id))
       .single();
     if (data) {
-      console.log(data);
       return ctx.render({
         profile: {
           ...data,
           fullname: `${data.lastname} ${data.firstname}`,
+          city: data.cities.name,
+          dateOfBirth: data.date_of_birth,
         },
       });
     }
 
-    return redirect('/profile/not-found');
+    return redirect("/profile/not-found");
   },
 };
 
@@ -49,9 +50,9 @@ export default function (ctx: PageProps<Query>) {
             <ProfileCpn profile={profile} />
           </div>
           <div class="w-1/3">
-            <SecondaryTab title="Thành viên mới" />
+            <SecondaryTab title="Thành viên mới" type="newest" />
             <Gap />
-            <SecondaryTab title="Xem nhiều nhất" />
+            <SecondaryTab title="Xem nhiều nhất" type="most-views" />
           </div>
         </div>
       </div>

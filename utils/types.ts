@@ -9,7 +9,7 @@ export enum Gender {
 
 export const genderMap: { [key in Gender]: string } = {
   male: "nam",
-  female: "nu",
+  female: "nữ",
   gay: "gay",
   les: "les",
 };
@@ -18,22 +18,30 @@ export enum Status {
   SINGLE = "single",
   MARRIED = "married",
   DIVORCED = "divorced",
+  HAVING_LOVER = "having-lover",
+  HAVING_FAMILY = "having-family",
 }
 
 export const statusMap: { [key in Status]: string } = {
-  single: "doc than",
-  married: "da ket hon",
-  divorced: "ly di",
+  single: "độc thân",
+  married: "đã kết hôn",
+  divorced: "ly dị",
+  "having-lover": "đang có người yêu",
+  "having-family": "đã có gia đình",
 };
 
 export enum Target {
   FRIENDSHIP = "friendship",
-  SEXUAL_RELATIONSHIP = "sexual-relationship",
+  LONG_TERM_LOVER = "long-term-lover",
+  SHORT_TERM_LOVER = "short-term-lover",
+  JUST_CHATTING = "just-chatting",
 }
 
 export const targetMap: { [key in Target]: string } = {
-  friendship: "bạn bè",
-  "sexual-relationship": "",
+  [Target.FRIENDSHIP]: "tìm bạn bè mới",
+  [Target.LONG_TERM_LOVER]: "người yêu lâu dài",
+  [Target.SHORT_TERM_LOVER]: "người yêu ngắn hạn",
+  [Target.JUST_CHATTING]: "tìm bạn tâm sự",
 };
 
 export interface Profile {
@@ -44,6 +52,9 @@ export interface Profile {
   target: Target;
   description: string;
   city?: City;
+  dateOfBirth?: string;
+  height?: number;
+  weight?: number;
 }
 
 export const tables = {
