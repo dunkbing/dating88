@@ -1,14 +1,18 @@
-interface Props {}
+import Gap from '@/components/Gap.tsx';
+import { Profile } from '@/utils/types.ts';
+import Carousel from '@/islands/Carousel.tsx';
 
-export default function (props: Props) {
+interface Props {
+  profile: Profile;
+}
+
+export default function ({ profile }: Props) {
   return (
     <div class="w-full">
       <div class="p-8 bg-white shadow">
-        <div class="">
-          <img
-            class="w-1/2 rounded-2xl mb-3"
-            src="https://tailwindcss.com/img/card-left.jpg"
-          />
+        <div>
+          <Carousel />
+          <Gap.XS />
           <div class="space-x-2">
             <button class="text-white py-2 px-4 uppercase rounded-full hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5 bg-gradient-to-br from-blue-500 via-indigo-500 to-indigo-500">
               Like
@@ -23,7 +27,7 @@ export default function (props: Props) {
         </div>
         <div class="mt-2 border-b pb-2">
           <h1 class="text-4xl font-medium text-gray-700">
-            Jessica Jones, <span class="font-light text-gray-500">27</span>
+            {profile.fullname}, <span class="font-light text-gray-500">27</span>
           </h1>
           <p class="font-light text-gray-600 mt-3">Bucharest, Romania</p>
           <p class="font-light text-gray-600 mt-3">

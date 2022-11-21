@@ -1,4 +1,4 @@
-import { genderMap, Profile, statusMap, targetMap } from "@/utils/types.ts";
+import { genderMap, Profile, statusMap, targetMap } from '@/utils/types.ts';
 
 type Props = Profile;
 
@@ -13,7 +13,7 @@ function Link(props: { to?: string; text?: string }) {
   );
 }
 
-function PrimaryProfileCard(props: Props) {
+export default function PrimaryProfileCard(props: Props) {
   const links = [
     [props.gender, genderMap[props.gender]],
     [props.status, statusMap[props.status]],
@@ -48,5 +48,3 @@ function PrimaryProfileCard(props: Props) {
     </>
   );
 }
-
-export default PrimaryProfileCard;

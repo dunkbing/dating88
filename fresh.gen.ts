@@ -11,14 +11,15 @@ import * as $4 from "./routes/login/[provider].tsx";
 import * as $5 from "./routes/login/index.tsx";
 import * as $6 from "./routes/profile/[id].tsx";
 import * as $7 from "./routes/signup.tsx";
-import * as $$0 from "./islands/LoginForm.tsx";
-import * as $$1 from "./islands/Nav.tsx";
-import * as $$2 from "./islands/PrimaryProfileCard.tsx";
-import * as $$3 from "./islands/PrimaryTab.tsx";
-import * as $$4 from "./islands/Profile.tsx";
-import * as $$5 from "./islands/SecondaryProfileCard.tsx";
-import * as $$6 from "./islands/SecondaryTab.tsx";
-import * as $$7 from "./islands/SignupForm.tsx";
+import * as $$0 from "./islands/Carousel.tsx";
+import * as $$1 from "./islands/LoginForm.tsx";
+import * as $$2 from "./islands/Nav.tsx";
+import * as $$3 from "./islands/PrimaryProfileCard.tsx";
+import * as $$4 from "./islands/PrimaryTab.tsx";
+import * as $$5 from "./islands/Profile.tsx";
+import * as $$6 from "./islands/SecondaryProfileCard.tsx";
+import * as $$7 from "./islands/SecondaryTab.tsx";
+import * as $$8 from "./islands/SignupForm.tsx";
 
 const manifest = {
   routes: {
@@ -32,14 +33,15 @@ const manifest = {
     "./routes/signup.tsx": $7,
   },
   islands: {
-    "./islands/LoginForm.tsx": $$0,
-    "./islands/Nav.tsx": $$1,
-    "./islands/PrimaryProfileCard.tsx": $$2,
-    "./islands/PrimaryTab.tsx": $$3,
-    "./islands/Profile.tsx": $$4,
-    "./islands/SecondaryProfileCard.tsx": $$5,
-    "./islands/SecondaryTab.tsx": $$6,
-    "./islands/SignupForm.tsx": $$7,
+    "./islands/Carousel.tsx": $$0,
+    "./islands/LoginForm.tsx": $$1,
+    "./islands/Nav.tsx": $$2,
+    "./islands/PrimaryProfileCard.tsx": $$3,
+    "./islands/PrimaryTab.tsx": $$4,
+    "./islands/Profile.tsx": $$5,
+    "./islands/SecondaryProfileCard.tsx": $$6,
+    "./islands/SecondaryTab.tsx": $$7,
+    "./islands/SignupForm.tsx": $$8,
   },
   baseUrl: import.meta.url,
   config,

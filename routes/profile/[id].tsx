@@ -1,26 +1,43 @@
-import { Head } from "$fresh/runtime.ts";
-import { Layout } from "@/islands/Nav.tsx";
-import Gap from "@/components/Gap.tsx";
-import SecondaryTab from "@/islands/SecondaryTab.tsx";
-import Profile from "../../islands/Profile.tsx";
-import { Handlers, PageProps } from "$fresh/server.ts";
+import { Head } from '$fresh/runtime.ts';
+import { Layout } from '@/islands/Nav.tsx';
+import Gap from '@/components/Gap.tsx';
+import SecondaryTab from '@/islands/SecondaryTab.tsx';
+import ProfileCpn from '@/islands/Profile.tsx';
+import { Handlers, PageProps } from '$fresh/server.ts';
+import { Profile } from '@/utils/types.ts';
+import { supabaseClient } from '@/utils/supabase.ts';
+import { redirect } from '@/utils/mod.ts';
 
 interface Query {
-  message: string;
+  profile: Profile;
 }
 
 export const handler: Handlers<Query> = {
   async GET(_req, ctx) {
-    // const data = await graphql<Query>(q, { product: ctx.params.product });
-    // if (!data.product) {
-    //   return new Response("Product not found", { status: 404 });
-    // }
-    return ctx.render({ message: "ok" });
+    const { id } = ctx.params;
+    const { data } = await supabaseClient
+      .from('profiles')
+      .select(
+        'id, firstname, lastname, gender, status, target, description, views, cities(*)'
+      )
+      .eq('id', Number(id))
+      .single();
+    if (data) {
+      console.log(data);
+      return ctx.render({
+        profile: {
+          ...data,
+          fullname: `${data.lastname} ${data.firstname}`,
+        },
+      });
+    }
+
+    return redirect('/profile/not-found');
   },
 };
 
 export default function (ctx: PageProps<Query>) {
-  console.log(ctx.data.message);
+  const { profile } = ctx.data;
   return (
     <Layout>
       <div>
@@ -29,7 +46,7 @@ export default function (ctx: PageProps<Query>) {
         </Head>
         <div class="p-4 mx-auto max-w-screen-xl flex">
           <div class="w-2/3">
-            <Profile />
+            <ProfileCpn profile={profile} />
           </div>
           <div class="w-1/3">
             <SecondaryTab title="Thành viên mới" />

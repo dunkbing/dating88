@@ -3,7 +3,7 @@ import { tw } from 'twind';
 import { asset } from '$fresh/runtime.ts';
 import { JSX } from 'preact/jsx-runtime';
 import { Footer } from '@/components/Footer.tsx';
-import { DENO_ENV } from '@/utils/config.ts';
+// import { DENO_ENV } from '@/utils/config.ts';
 
 const Nav = () => {
   const ref = useRef(window);
@@ -17,7 +17,6 @@ const Nav = () => {
     let lastKnownWidth = 0;
     let ticking = false;
     const doSomething = (width: number) => {
-      console.log(width);
       if (width > 768) {
         setNavOpen(true);
       } else {
@@ -123,11 +122,11 @@ export const Layout = ({ children, data }: LayoutProps) => {
       <Nav />
       {children}
       <Footer />
-      {DENO_ENV === 'development' ? (
+      {/* {DENO_ENV === 'development' ? (
         <pre>{JSON.stringify(data, null, 2)}</pre>
       ) : (
         ''
-      )}
+      )} */}
     </>
   );
 };
