@@ -48,6 +48,7 @@ export default function SecondaryTab(props: Props) {
           target={p.target}
           description={p.description}
           city={p.city}
+          dateOfBirth={p.dateOfBirth}
         />
       ))}
     </div>

@@ -11,7 +11,7 @@ function getProfiles(type: string, gender: Gender) {
   const query = supabaseClient
     .from(tables.profiles)
     .select(
-      "id, firstname, lastname, gender, status, target, description, views, cities(*)",
+      "id, firstname, lastname, gender, status, target, description, views, date_of_birth, cities(*)",
     )
     .eq("gender", gender);
   const newestQuery = query.order("id", { ascending: false }).range(0, 10);
@@ -37,6 +37,7 @@ export const handler: Handlers<Query> = {
         status: d.status,
         description: d.description,
         city: d.cities,
+        dateOfBirth: d.date_of_birth,
       })) || [];
 
       return Response.json(profiles);

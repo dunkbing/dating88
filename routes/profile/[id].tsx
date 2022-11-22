@@ -4,7 +4,7 @@ import Gap from "@/components/Gap.tsx";
 import SecondaryTab from "@/islands/SecondaryTab.tsx";
 import ProfileCpn from "@/islands/Profile.tsx";
 import { Handlers, PageProps } from "$fresh/server.ts";
-import { Profile } from "@/utils/types.ts";
+import { Profile, tables } from "@/utils/types.ts";
 import { supabaseClient } from "@/utils/supabase.ts";
 import { redirect } from "@/utils/mod.ts";
 
@@ -16,13 +16,14 @@ export const handler: Handlers<Query> = {
   async GET(_req, ctx) {
     const { id } = ctx.params;
     const { data } = await supabaseClient
-      .from("profiles")
+      .from(tables.profiles)
       .select(
         "id, firstname, lastname, gender, status, target, description, views, date_of_birth, height, weight, cities(*)",
       )
       .eq("id", Number(id))
       .single();
     if (data) {
+      void supabaseClient.from;
       return ctx.render({
         profile: {
           ...data,

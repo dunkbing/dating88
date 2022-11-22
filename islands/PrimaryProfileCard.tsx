@@ -1,4 +1,5 @@
 import { genderMap, Profile, statusMap, targetMap } from "@/utils/types.ts";
+import { getAge } from "@/utils/mod.ts";
 
 type Props = Profile;
 
@@ -30,12 +31,12 @@ export default function PrimaryProfileCard(props: Props) {
             src="https://tailwindcss.com/img/card-left.jpg"
           />
         </div>
-        <div className="border-r border-b border-l border-gray-50 lg:border-l-0 lg:border-t bg-white rounded-b lg:rounded-r pl-4">
+        <div className="w-2/3 border-r border-b border-l border-gray-50 lg:border-l-0 lg:border-t bg-white rounded-b lg:rounded-r pl-4">
           <a
             class="text-xl text-purple-800 font-semibold capitalize"
-            href="/profile/1"
+            href={`/profile/${props.id}`}
           >
-            {props.fullname} - 32
+            {props.fullname} - {getAge(props.dateOfBirth)}
           </a>
           <div class="font-medium flex items-center space-x-2">
             {links.map(([to, text], i) => (
@@ -45,7 +46,7 @@ export default function PrimaryProfileCard(props: Props) {
               </>
             ))}
           </div>
-          <p className="text-gray-900 text-lg w-11/12">{props.description}</p>
+          <p className="text-gray-900 text-lg">{props.description}</p>
         </div>
       </div>
     </>

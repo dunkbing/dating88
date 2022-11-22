@@ -44,6 +44,20 @@ export const targetMap: { [key in Target]: string } = {
   [Target.JUST_CHATTING]: "tìm bạn tâm sự",
 };
 
+export enum Education {
+  HIGH_SCHOOL = "high-school",
+  COLLEGE = "college",
+  MASTER = "master",
+  PHD = "phd",
+}
+
+export const educationMap: { [key in Education]: string } = {
+  [Education.HIGH_SCHOOL]: "",
+  [Education.COLLEGE]: "",
+  [Education.MASTER]: "",
+  [Education.PHD]: "",
+};
+
 export interface Profile {
   id: number;
   fullname: string;
