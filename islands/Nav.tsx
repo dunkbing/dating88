@@ -3,8 +3,14 @@ import { tw } from "twind";
 import { asset } from "$fresh/runtime.ts";
 import { JSX } from "preact/jsx-runtime";
 import { Footer } from "@/components/Footer.tsx";
+import { Profile } from "@/utils/types.ts";
+import { ProfileMenu } from "../components/ProfileMenu.tsx";
 
-const Nav = () => {
+interface Props {
+  user?: Profile;
+}
+
+const Nav = (props: Props) => {
   useEffect(() => {
     const fetchData = () => {
       fetch("/api/joke")
@@ -14,6 +20,7 @@ const Nav = () => {
     };
     fetchData();
   }, []);
+
   const ref = useRef(window);
   const [navOpen, setNavOpen] = useState(false);
   const linkStyle =
@@ -102,14 +109,16 @@ const Nav = () => {
                   Gay
                 </a>
               </div>
-              <div>
-                <a href="/login" class={buttonStyle}>
-                  Login
-                </a>
-                <a href="/signup" class={buttonStyle}>
-                  Signup
-                </a>
-              </div>
+              {props.user ? <ProfileMenu /> : (
+                <div>
+                  <a href="/login" class={buttonStyle}>
+                    Login
+                  </a>
+                  <a href="/signup" class={buttonStyle}>
+                    Signup
+                  </a>
+                </div>
+              )}
             </div>
           )
           : (
