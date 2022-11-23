@@ -7,7 +7,6 @@ const ENV = cleanEnv(RAW_ENV, {
   DENO_ENV: str({ choices: ["development", "testing", "production"] }),
   SUPABASE_URL: url(),
   SUPABASE_ANON_KEY: str(),
-  SUPABASE_SERVICE_ROLE: str(),
   REDIS_HOST: host(),
   REDIS_PORT: num(),
   REDIS_USER: str(),
@@ -17,7 +16,6 @@ const ENV = cleanEnv(RAW_ENV, {
 export const {
   DENO_ENV,
   SUPABASE_URL,
-  SUPABASE_SERVICE_ROLE,
   SUPABASE_ANON_KEY,
   REDIS_HOST,
   REDIS_PORT,
