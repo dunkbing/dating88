@@ -3,12 +3,27 @@ import { tw } from "twind";
 import { asset } from "$fresh/runtime.ts";
 import { JSX } from "preact/jsx-runtime";
 import { Footer } from "@/components/Footer.tsx";
-import { Profile } from "@/utils/types.ts";
+import { Profile, Supabase } from "@/utils/types.ts";
 import { ProfileMenu } from "../components/ProfileMenu.tsx";
 
 interface Props {
-  user?: Profile;
+  user?: Supabase.User;
 }
+
+const AuthMenu = () => {
+  const buttonStyle =
+    tw`inline-block text-sm px-4 py-2 mx-1 leading-none border rounded text-white border-white hover:border-transparent hover:bg-pink-400 mt-4 md:mt-0`;
+  return (
+    <div>
+      <a href="/login" class={buttonStyle}>
+        Login
+      </a>
+      <a href="/signup" class={buttonStyle}>
+        Signup
+      </a>
+    </div>
+  );
+};
 
 const Nav = (props: Props) => {
   useEffect(() => {
@@ -27,8 +42,6 @@ const Nav = (props: Props) => {
     tw`block mt-4 md:inline-block md:mt-0 hover:text-purple-500 text-white font-semibold`;
   const navStyle = tw`w-full block flex-grow md:flex md:items-center md:w-auto`;
   const navLinksStyle = tw`text-sm md:flex-grow`;
-  const buttonStyle =
-    tw`inline-block text-sm px-4 py-2 mx-1 leading-none border rounded text-white border-white hover:border-transparent hover:bg-pink-400 mt-4 md:mt-0`;
 
   useEffect(() => {
     let lastKnownWidth = 0;
@@ -109,16 +122,7 @@ const Nav = (props: Props) => {
                   Gay
                 </a>
               </div>
-              {props.user ? <ProfileMenu /> : (
-                <div>
-                  <a href="/login" class={buttonStyle}>
-                    Login
-                  </a>
-                  <a href="/signup" class={buttonStyle}>
-                    Signup
-                  </a>
-                </div>
-              )}
+              {props.user ? <ProfileMenu /> : <AuthMenu />}
             </div>
           )
           : (
@@ -133,14 +137,15 @@ export default Nav;
 
 interface LayoutProps {
   children: JSX.Element;
+  user?: Supabase.User;
   // deno-lint-ignore no-explicit-any
   data?: any;
 }
 
-export const Layout = ({ children, data }: LayoutProps) => {
+export const Layout = ({ children, user, data }: LayoutProps) => {
   return (
     <>
-      <Nav />
+      <Nav user={user} />
       {children}
       <Footer />
       {

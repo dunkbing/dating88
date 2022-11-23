@@ -25,14 +25,14 @@ export function ProfileMenu() {
           class={`absolute right-0 w-40 mt-2 bg-white border rounded shadow-xl ${showMenu}`}
         >
           <a
-            href="#"
+            href="/setting"
             class="transition-colors duration-200 block px-4 py-2 text-base text-gray-900 rounded hover:bg-purple-500 hover:text-white"
           >
             Settings
           </a>
           <hr></hr>
           <a
-            href="#"
+            href="/logout"
             class="transition-colors duration-200 block px-4 py-2 text-base text-gray-900 rounded hover:bg-purple-500 hover:text-white"
           >
             Logout

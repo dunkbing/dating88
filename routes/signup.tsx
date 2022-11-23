@@ -1,4 +1,4 @@
-import { Handlers } from "$fresh/server.ts";
+import { Handlers, PageProps } from "$fresh/server.ts";
 import Signup from "@/islands/SignupForm.tsx";
 import { Layout } from "@/islands/Nav.tsx";
 import { supabaseClient } from "@/utils/supabase.ts";
@@ -21,7 +21,7 @@ export const handler: Handlers = {
   },
 };
 
-const SignupPage = ({ data }) => {
+const SignupPage = ({ data }: PageProps) => {
   const { error } = data;
   return (
     <Layout data={data}>

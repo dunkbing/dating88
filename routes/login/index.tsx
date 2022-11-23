@@ -1,46 +1,50 @@
 import { JSX } from "preact/jsx-runtime";
 import { Handlers, PageProps } from "$fresh/server.ts";
+import * as redis from "redis";
 import Login from "@/islands/LoginForm.tsx";
 import { Layout } from "@/islands/Nav.tsx";
+import { supabaseClient } from "@/utils/supabase.ts";
+import { redirect } from "@/utils/mod.ts";
+import { setCookie } from "$std/http/cookie.ts";
+import { USER_ID_COOKIE_NAME } from "@/utils/constants.ts";
 
 interface Query {
   error: Error | null;
 }
 
-interface State {}
+interface State {
+  store: redis.Redis;
+}
 
 export const handler: Handlers<Query, State> = {
   GET: (_req, ctx) => {
-    return ctx.render({ ...ctx.state });
+    return ctx.render({ ...ctx.state, error: null });
   },
   POST: async (req, ctx) => {
-    console.log(await req.formData());
-    // const login = await fetch(`${ctx.API_URL}/auth/local`, {
-    //   method: 'POST',
-    //   body: await req.formData(),
-    // }).then(async (res) => await res.json());
-    // console.log(login);
-    // // Redirect if we got a login success, else render the form with an error
-    // if (login.error) {
-    //   return ctx.render({ ...ctx.state, error: login.error });
-    // } else {
-    //   const { user, jwt } = login;
-    //   // Put the login into the redis store
-    //   const state = Object.assign(ctx.state, { user, jwt, webview: false });
-    //   return await ctx.store
-    //     .set(ctx.REDIS_KEY, JSON.stringify(state))
-    //     .then(() => {
-    //       // Redirect. Next request will get the session from it's cookie
-    //       const res = new Response(null, {
-    //         status: 302,
-    //         headers: new Headers({
-    //           location: ctx.BASE_URL + `/account`,
-    //         }),
-    //       });
-    //       return res;
-    //     });
-    // }
-    return ctx.render({ error: null });
+    const formData = await req.formData();
+    const body: Record<string, string> = {};
+    formData.forEach((v, k) => (body[k] = v as string));
+    const { data, error } = await supabaseClient.auth.signInWithPassword({
+      email: body.email,
+      password: body.password,
+    });
+
+    const resp = data ? redirect("/") : await ctx.render({ error });
+
+    if (data.user) {
+      setCookie(resp.headers, {
+        name: USER_ID_COOKIE_NAME,
+        value: data.user.id,
+      });
+      await ctx.state.store.set(
+        `user-${data.user.id}`,
+        JSON.stringify(data.user),
+        {
+          ex: 7 * 24 * 60 * 60,
+        },
+      );
+    }
+    return resp;
   },
 };
 
@@ -58,8 +62,10 @@ const PageLogin = ({ data }: PageProps<Query>) => {
             {error ? <p class="text-red-500">{error.message}</p> : ""}
           </div>
           <Login />
-          <LoginOAuth provider="github">Sign in with Github</LoginOAuth>
-          <LoginOAuth provider="discord">Sign in with Discord</LoginOAuth>
+          {
+            /* <LoginOAuth provider="github">Sign in with Github</LoginOAuth>
+          <LoginOAuth provider="discord">Sign in with Discord</LoginOAuth> */
+          }
         </div>
         {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
       </div>

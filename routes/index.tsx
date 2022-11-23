@@ -4,7 +4,7 @@ import { Layout } from "@/islands/Nav.tsx";
 import Gap from "@/components/Gap.tsx";
 import PrimaryTab from "@/islands/PrimaryTab.tsx";
 import SecondaryTab from "@/islands/SecondaryTab.tsx";
-import { Profile } from "@/utils/types.ts";
+import { Profile, Supabase } from "@/utils/types.ts";
 import { getProfiles } from "@/utils/profile.ts";
 import Pagination from "@/islands/Pagination.tsx";
 
@@ -12,6 +12,7 @@ interface Query {
   mainProfiles: Profile[];
   page: number;
   totalPage: number | null;
+  user: Supabase.User;
 }
 
 export const handler: Handlers<Query> = {
@@ -29,16 +30,17 @@ export const handler: Handlers<Query> = {
       city: d.cities,
       dateOfBirth: d.date_of_birth,
     })) || [];
+    const user = ctx.state.user as Supabase.User;
 
-    return ctx.render({ mainProfiles, page, totalPage });
+    return ctx.render({ mainProfiles, page, totalPage, user });
   },
 };
 
 export default function Home(ctx: PageProps<Query>) {
-  const { mainProfiles, page, totalPage } = ctx.data;
+  const { mainProfiles, page, totalPage, user } = ctx.data;
 
   return (
-    <Layout>
+    <Layout user={user}>
       <div>
         <Head>
           <title>Hẹn Hò</title>

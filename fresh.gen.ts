@@ -4,15 +4,20 @@
 
 import config from "./deno.json" assert { type: "json" };
 import * as $0 from "./routes/[name].tsx";
-import * as $1 from "./routes/api/get-profiles.ts";
-import * as $2 from "./routes/api/joke.ts";
-import * as $3 from "./routes/error.tsx";
-import * as $4 from "./routes/find-partner/[criteria].tsx";
-import * as $5 from "./routes/index.tsx";
-import * as $6 from "./routes/login/[provider].tsx";
-import * as $7 from "./routes/login/index.tsx";
-import * as $8 from "./routes/profile/[id].tsx";
-import * as $9 from "./routes/signup.tsx";
+import * as $1 from "./routes/_404.tsx";
+import * as $2 from "./routes/_500.tsx";
+import * as $3 from "./routes/_middleware.ts";
+import * as $4 from "./routes/api/get-profiles.ts";
+import * as $5 from "./routes/api/joke.ts";
+import * as $6 from "./routes/error.tsx";
+import * as $7 from "./routes/find-partner/[criteria].tsx";
+import * as $8 from "./routes/index.tsx";
+import * as $9 from "./routes/login/[provider].tsx";
+import * as $10 from "./routes/login/_middleware.ts";
+import * as $11 from "./routes/login/index.tsx";
+import * as $12 from "./routes/logout.tsx";
+import * as $13 from "./routes/profile/[id].tsx";
+import * as $14 from "./routes/signup.tsx";
 import * as $$0 from "./islands/Carousel.tsx";
 import * as $$1 from "./islands/LoginForm.tsx";
 import * as $$2 from "./islands/Nav.tsx";
@@ -27,15 +32,20 @@ import * as $$9 from "./islands/SignupForm.tsx";
 const manifest = {
   routes: {
     "./routes/[name].tsx": $0,
-    "./routes/api/get-profiles.ts": $1,
-    "./routes/api/joke.ts": $2,
-    "./routes/error.tsx": $3,
-    "./routes/find-partner/[criteria].tsx": $4,
-    "./routes/index.tsx": $5,
-    "./routes/login/[provider].tsx": $6,
-    "./routes/login/index.tsx": $7,
-    "./routes/profile/[id].tsx": $8,
-    "./routes/signup.tsx": $9,
+    "./routes/_404.tsx": $1,
+    "./routes/_500.tsx": $2,
+    "./routes/_middleware.ts": $3,
+    "./routes/api/get-profiles.ts": $4,
+    "./routes/api/joke.ts": $5,
+    "./routes/error.tsx": $6,
+    "./routes/find-partner/[criteria].tsx": $7,
+    "./routes/index.tsx": $8,
+    "./routes/login/[provider].tsx": $9,
+    "./routes/login/_middleware.ts": $10,
+    "./routes/login/index.tsx": $11,
+    "./routes/logout.tsx": $12,
+    "./routes/profile/[id].tsx": $13,
+    "./routes/signup.tsx": $14,
   },
   islands: {
     "./islands/Carousel.tsx": $$0,
