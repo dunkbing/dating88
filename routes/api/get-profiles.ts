@@ -7,16 +7,29 @@ interface Query {
   profiles: Profile[];
 }
 
-function getProfiles(type: string, gender: Gender) {
+async function getProfiles(type: string, gender: Gender) {
+  const fields =
+    "id, firstname, lastname, gender, status, target, description, date_of_birth, cities(*)";
   const query = supabaseClient
     .from(tables.profiles)
-    .select(
-      "id, firstname, lastname, gender, status, target, description, views, date_of_birth, cities(*)",
-    )
+    .select(fields)
     .eq("gender", gender);
   const newestQuery = query.order("id", { ascending: false }).range(0, 10);
-  const mostViewsQuery = query
+  if (type === "newest") {
+    return newestQuery;
+  }
+  const { data } = await supabaseClient
+    .from(tables.profileViews)
+    .select("id, profile_id, views")
     .order("views", { ascending: false })
+    .range(0, 10);
+  const profileIds = data?.map((d) => d.profile_id) || [];
+  console.log(profileIds);
+  const mostViewsQuery = supabaseClient
+    .from(tables.profiles)
+    .select(fields)
+    .in("id", profileIds)
+    .eq("gender", gender)
     .range(0, 10);
   return type === "newest" ? newestQuery : mostViewsQuery;
 }

@@ -4,12 +4,14 @@ import Gap from "@/components/Gap.tsx";
 import { Layout } from "@/islands/Nav.tsx";
 import PrimaryTab from "@/islands/PrimaryTab.tsx";
 import SecondaryTab from "@/islands/SecondaryTab.tsx";
-import { Profile } from "@/utils/types.ts";
+import { Gender, Profile, Supabase, titleGenderMap } from "@/utils/types.ts";
 import { redirect } from "@/utils/mod.ts";
 import { getProfilesByCriteria } from "@/utils/profile.ts";
 
 interface Query {
   profiles: Profile[];
+  title: string;
+  user?: Supabase.User;
 }
 
 export const handler: Handlers<Query> = {
@@ -25,9 +27,12 @@ export const handler: Handlers<Query> = {
         status: d.status,
         description: d.description,
         city: d.cities,
+        dateOfBirth: d.date_of_birth,
       })) || [];
 
-      return ctx.render({ profiles });
+      const user = ctx.state.user as Supabase.User;
+
+      return ctx.render({ profiles, title: titleGenderMap[criteria], user });
     } catch (error) {
       return redirect("/");
     }
@@ -35,16 +40,16 @@ export const handler: Handlers<Query> = {
 };
 
 export default function (ctx: PageProps<Query>) {
-  const { profiles } = ctx.data;
+  const { profiles, title, user } = ctx.data;
   return (
-    <Layout>
+    <Layout user={user}>
       <div>
         <Head>
           <title>Hẹn Hò</title>
         </Head>
         <div class="p-4 mx-auto max-w-screen-xl flex">
           <div class="w-2/3">
-            <PrimaryTab title="Tim ban gai" profiles={profiles} />
+            <PrimaryTab title={title} profiles={profiles} />
           </div>
           <div class="w-1/3">
             <SecondaryTab title="Thành viên mới" type="newest" />

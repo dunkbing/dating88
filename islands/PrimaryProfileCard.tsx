@@ -26,10 +26,7 @@ export default function PrimaryProfileCard(props: Props) {
     <>
       <div className="w-full lg:flex my-2">
         <div class="w-36 h-auto">
-          <img
-            class="w-full rounded-xl"
-            src="https://tailwindcss.com/img/card-left.jpg"
-          />
+          <img class="w-full rounded-xl" src="/haibara.webp" />
         </div>
         <div className="w-2/3 border-r border-b border-l border-gray-50 lg:border-l-0 lg:border-t bg-white rounded-b lg:rounded-r pl-4">
           <a

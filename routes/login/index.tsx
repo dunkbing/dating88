@@ -28,6 +28,7 @@ export const handler: Handlers<Query, State> = {
       email: body.email,
       password: body.password,
     });
+    console.log("login", data);
 
     const resp = data ? redirect("/") : await ctx.render({ error });
 
@@ -35,12 +36,13 @@ export const handler: Handlers<Query, State> = {
       setCookie(resp.headers, {
         name: USER_ID_COOKIE_NAME,
         value: data.user.id,
+        maxAge: data.session?.expires_in,
       });
       await ctx.state.store.set(
         `user-${data.user.id}`,
         JSON.stringify(data.user),
         {
-          ex: 7 * 24 * 60 * 60,
+          ex: data.session?.expires_in,
         },
       );
     }

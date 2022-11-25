@@ -42,15 +42,17 @@ export const handler: MiddlewareHandler = async (req, ctx) => {
   const start = Date.now();
   const { pathname } = new URL(req.url);
   const withSession = ["/", "/login", "/signup", "/logout", "/account"];
+  ctx.state.store = store;
+  // const resp = await setupUserSession(req, ctx);
   let resp: Response;
   if (
     withSession.includes(pathname) ||
     pathname.startsWith("/login") ||
     pathname.startsWith("/api") ||
-    pathname.startsWith("/account")
+    pathname.startsWith("/find-partner") ||
+    pathname.startsWith("/profile")
   ) {
     ctx.state.DENO_ENV = DENO_ENV;
-    ctx.state.store = store;
     resp = await setupUserSession(req, ctx);
   } else {
     resp = await ctx.next();

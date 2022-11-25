@@ -1,3 +1,4 @@
+import { z } from "zod";
 import { City } from "./cities.ts";
 
 export enum Gender {
@@ -12,6 +13,13 @@ export const genderMap: { [key in Gender]: string } = {
   female: "nữ",
   gay: "gay",
   les: "les",
+};
+
+export const titleGenderMap: Record<string, string> = {
+  [Gender.MALE]: "Tìm bạn trai",
+  [Gender.FEMALE]: "Tìm bạn gái",
+  [Gender.GAY]: "Gay",
+  [Gender.LES]: "Les",
 };
 
 export enum Status {
@@ -58,6 +66,13 @@ export const educationMap: { [key in Education]: string } = {
   [Education.PHD]: "",
 };
 
+export const RegisterUser = z.object({
+  firstname: z.string().min(1),
+  lastname: z.string().min(1),
+  email: z.string().email({ message: "email khong hop le" }),
+  password: z.string().min(5, { message: "mat khau phai co it nhat 5 ky tu" }),
+});
+
 export interface Profile {
   id: number;
   fullname: string;
@@ -74,6 +89,7 @@ export interface Profile {
 export const tables = {
   users: "users",
   profiles: "profiles",
+  profileViews: "profile_views",
 };
 
 export namespace Supabase {

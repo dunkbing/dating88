@@ -3,7 +3,7 @@ import { tw } from "twind";
 import { asset } from "$fresh/runtime.ts";
 import { JSX } from "preact/jsx-runtime";
 import { Footer } from "@/components/Footer.tsx";
-import { Profile, Supabase } from "@/utils/types.ts";
+import { Gender, Profile, Supabase, titleGenderMap } from "@/utils/types.ts";
 import { ProfileMenu } from "../components/ProfileMenu.tsx";
 
 interface Props {
@@ -110,16 +110,16 @@ const Nav = (props: Props) => {
             <div class={navStyle}>
               <div class={navLinksStyle}>
                 <a href="/find-partner/female" class={tw`${linkStyle} mr-4`}>
-                  Tìm bạn gái
+                  {titleGenderMap[Gender.FEMALE]}
                 </a>
                 <a href="/find-partner/male" class={tw`${linkStyle} mr-4`}>
-                  Tìm bạn trai
+                  {titleGenderMap[Gender.MALE]}
                 </a>
                 <a href="/find-partner/les" class={tw`${linkStyle} mr-4`}>
-                  Les
+                  {titleGenderMap[Gender.LES]}
                 </a>
                 <a href="/find-partner/gay" class={tw`${linkStyle}`}>
-                  Gay
+                  {titleGenderMap[Gender.GAY]}
                 </a>
               </div>
               {props.user ? <ProfileMenu /> : <AuthMenu />}

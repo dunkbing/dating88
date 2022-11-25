@@ -1,12 +1,15 @@
 import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
-import { Layout } from "@/islands/Nav.tsx";
+import Nav, { Layout } from "@/islands/Nav.tsx";
 import Gap from "@/components/Gap.tsx";
 import PrimaryTab from "@/islands/PrimaryTab.tsx";
 import SecondaryTab from "@/islands/SecondaryTab.tsx";
 import { Profile, Supabase } from "@/utils/types.ts";
 import { getProfiles } from "@/utils/profile.ts";
 import Pagination from "@/islands/Pagination.tsx";
+import { Footer } from "@/components/Footer.tsx";
+import { JSX } from "preact/jsx-runtime";
+import { DENO_ENV } from "../utils/config.ts";
 
 interface Query {
   mainProfiles: Profile[];
@@ -47,7 +50,7 @@ export default function Home(ctx: PageProps<Query>) {
         </Head>
         <div class="p-4 mx-auto max-w-screen-xl flex lg:flex-row md:flex-col">
           <div class="md:w-2/3">
-            <PrimaryTab title="Tim ban gai" profiles={mainProfiles} />
+            <PrimaryTab title="Kết bạn bốn phương" profiles={mainProfiles} />
             <Pagination pageCount={totalPage || 1} currentPage={page} />
           </div>
           <div class="w-1/3">
@@ -60,3 +63,25 @@ export default function Home(ctx: PageProps<Query>) {
     </Layout>
   );
 }
+
+interface LayoutProps {
+  children: JSX.Element;
+  user?: Supabase.User;
+  // deno-lint-ignore no-explicit-any
+  data?: any;
+}
+
+export const Layout1 = ({ children, user, data }: LayoutProps) => {
+  return (
+    <>
+      <Nav user={user} />
+      {children}
+      <Footer />
+      {DENO_ENV === "development"
+        ? <pre>{JSON.stringify(data, null, 2)}</pre>
+        : (
+          ""
+        )}
+    </>
+  );
+};

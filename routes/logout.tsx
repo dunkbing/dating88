@@ -1,8 +1,9 @@
-import { deleteCookie, getCookies, setCookie } from "$std/http/cookie.ts";
+import { deleteCookie, getCookies } from "$std/http/cookie.ts";
 import { Handlers } from "$fresh/server.ts";
 import * as redis from "redis";
 import { USER_ID_COOKIE_NAME, userRedisKey } from "@/utils/constants.ts";
 import { redirect } from "@/utils/mod.ts";
+import { supabaseClient } from "@/utils/supabase.ts";
 
 interface Query {
   error: Error | null;
@@ -24,6 +25,8 @@ export const handler: Handlers<Query, State> = {
         deleteCookie(resp.headers, USER_ID_COOKIE_NAME);
         await ctx.state.store.del(userRedisKey(cookies[USER_ID_COOKIE_NAME]));
       }
+      const { error } = await supabaseClient.auth.signOut();
+      console.log("signout error", error);
     }
 
     return resp;
