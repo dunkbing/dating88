@@ -4,33 +4,29 @@ import Gap from "@/components/Gap.tsx";
 import SecondaryTab from "@/islands/SecondaryTab.tsx";
 import ProfileCpn from "@/islands/Profile.tsx";
 import { Handlers, PageProps } from "$fresh/server.ts";
-import { Profile, tables } from "@/utils/types.ts";
-import { supabaseClient } from "@/utils/supabase.ts";
+import { Profile, Supabase, tables } from "@/utils/types.ts";
 import { redirect } from "@/utils/mod.ts";
+import { getProfile } from "@/utils/profile.ts";
 
 interface Query {
   profile: Profile;
+  user?: Supabase.User;
 }
 
 export const handler: Handlers<Query> = {
   async GET(_req, ctx) {
     const { id } = ctx.params;
-    const { data } = await supabaseClient
-      .from(tables.profiles)
-      .select(
-        "id, firstname, lastname, gender, status, target, description, views, date_of_birth, height, weight, cities(*)",
-      )
-      .eq("id", Number(id))
-      .single();
-    if (data) {
-      void supabaseClient.from;
+    const profile = await getProfile(Number(id));
+    if (profile) {
+      const user = ctx.state.user as Supabase.User;
       return ctx.render({
         profile: {
-          ...data,
-          fullname: `${data.lastname} ${data.firstname}`,
-          city: data.cities.name,
-          dateOfBirth: data.date_of_birth,
+          ...profile,
+          fullname: `${profile.lastname} ${profile.firstname}`,
+          city: profile.cities.name,
+          dateOfBirth: profile.date_of_birth,
         },
+        user,
       });
     }
 
@@ -39,9 +35,9 @@ export const handler: Handlers<Query> = {
 };
 
 export default function (ctx: PageProps<Query>) {
-  const { profile } = ctx.data;
+  const { profile, user } = ctx.data;
   return (
-    <Layout>
+    <Layout user={user}>
       <div>
         <Head>
           <title>Hẹn Hò</title>

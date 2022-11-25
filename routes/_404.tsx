@@ -1,14 +1,17 @@
 import { Head } from "$fresh/runtime.ts";
 import { PageProps } from "$fresh/server.ts";
+import * as redis from "redis";
 import { Layout } from "@/islands/Nav.tsx";
+import { Supabase } from "@/utils/types.ts";
 
 interface Query {
-  error: Error | null;
+  error?: Error | null;
+  user?: Supabase.User;
 }
 
-export default function Home(ctx: PageProps<Query>) {
+export default function NotFound(ctx: PageProps<Query>) {
   return (
-    <Layout>
+    <Layout user={ctx.data?.user}>
       <div>
         <Head>
           <title>Error</title>

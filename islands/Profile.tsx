@@ -20,10 +20,10 @@ export default function ({ profile }: Props) {
               Like
             </button> */
             }
-            <button class="text-white py-2 px-4 uppercase rounded-full bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5 bg-gradient-to-br from-green-700 to-green-500">
+            <button class="text-white py-2 px-4 uppercase rounded-full bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5 bg-gradient-to-br from-green-700 to-green-500 focus:outline-none focus:ring focus:ring-green-300">
               Message
             </button>
-            <button class="text-white py-2 px-4 uppercase rounded-full bg-red-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5 bg-gradient-to-br from-red-500 via-pink-500 to-red-500">
+            <button class="text-white py-2 px-4 uppercase rounded-full bg-red-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5 bg-gradient-to-br from-red-500 via-pink-500 to-red-500 focus:outline-none focus:ring focus:ring-pink-300">
               Report
             </button>
           </div>
@@ -31,13 +31,15 @@ export default function ({ profile }: Props) {
         <div class="mt-2 border-b pb-2">
           <h1 class="text-4xl font-medium text-gray-700 capitalize">
             {profile.fullname},{" "}
-            <span class="font-light text-gray-500">
-              {getAge(profile.dateOfBirth)} tuổi
-            </span>
+            {profile.dateOfBirth && (
+              <span class="font-light text-gray-500">
+                {getAge(profile.dateOfBirth)} tuổi
+              </span>
+            )}
           </h1>
           <p class="font-light text-gray-600 mt-3">{profile.city}</p>
           <p class="font-light text-gray-600 capitalize mt-3">
-            {genderMap[profile.gender]} - {statusMap[profile.status]}- Cao{" "}
+            {genderMap[profile.gender]} - {statusMap[profile.status]} - Cao{" "}
             {profile.height}
             cm - Nặng {profile.weight} kg - Đại học
           </p>
