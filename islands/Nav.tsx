@@ -79,8 +79,8 @@ const Nav = (props: Props) => {
         <div class="flex items-center flex-shrink-0 text-white mr-6">
           <a href="/">
             <img
-              src={asset("/logo.svg")}
-              width={30}
+              src={asset("/logo.png")}
+              class="w-14 mr-2"
               alt="the fresh logo: a sliced lemon dripping with juice"
             />
           </a>
