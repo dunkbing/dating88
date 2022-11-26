@@ -13,6 +13,7 @@
     "redis": "https://deno.land/x/redis@v0.27.4/mod.ts",
     "$std/": "https://deno.land/std@0.165.0/",
     "zod": "https://deno.land/x/zod/mod.ts",
+    "i18next": "https://deno.land/x/i18next@v22.0.6/index.js",
     "supabase": "https://esm.sh/@supabase/supabase-js@2.1.0"
   }
 }
