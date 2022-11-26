@@ -16,7 +16,8 @@ export default function PrimaryTab(props: Props) {
         <PrimaryProfileCard
           key={p.id}
           id={p.id}
-          fullname={p.fullname}
+          lastname={p.lastname}
+          firstname={p.firstname}
           gender={p.gender}
           status={p.status}
           target={p.target}

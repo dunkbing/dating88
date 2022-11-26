@@ -10,6 +10,7 @@ import Pagination from "@/islands/Pagination.tsx";
 import { Footer } from "@/components/Footer.tsx";
 import { JSX } from "preact/jsx-runtime";
 import { DENO_ENV } from "../utils/config.ts";
+import { lang } from "../utils/i18n.ts";
 
 interface Query {
   mainProfiles: Profile[];
@@ -25,7 +26,8 @@ export const handler: Handlers<Query> = {
     const { data, totalPage } = await getProfiles(page);
     const mainProfiles: Profile[] = data?.map((d) => ({
       id: d.id,
-      fullname: `${d.lastname} ${d.firstname}`,
+      lastname: d.lastname,
+      firstname: d.firstname,
       gender: d.gender,
       target: d.target,
       status: d.status,
@@ -46,7 +48,7 @@ export default function Home(ctx: PageProps<Query>) {
     <Layout user={user}>
       <div>
         <Head>
-          <title>Hẹn Hò</title>
+          <title>{lang("dating88")}</title>
         </Head>
         <div class="p-4 mx-auto max-w-screen-xl flex lg:flex-row md:flex-col">
           <div class="md:w-2/3">

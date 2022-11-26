@@ -1,6 +1,8 @@
+import { lang } from "../utils/i18n.ts";
+
 const LoginForm = () => {
   return (
-    <form class="space-y-6 mt-8" action="/login" method="POST">
+    <form class="space-y-6 mt-8" action="/auth/login" method="POST">
       <div class="rounded-md shadow-sm -space-y-px">
         <div>
           <label for="email" class="sr-only">
@@ -17,7 +19,7 @@ const LoginForm = () => {
         </div>
         <div>
           <label for="password" class="sr-only">
-            Password
+            {lang("password")}
           </label>
           <input
             id="password"
@@ -34,14 +36,13 @@ const LoginForm = () => {
       <div class="flex items-center justify-between">
         <div class="text-sm">
           <a href="#" class="font-medium text-pink-400 hover:text-pink-300">
-            Forgot your password?
+            {lang("forgotYourPassword")}?
           </a>
         </div>
       </div>
       <div>
         <button
           type="submit"
-          id="login-submit"
           class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-pink-400 hover:bg-pink-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-300"
         >
           <span class="absolute left-0 inset-y-0 flex items-center pl-3">
@@ -59,7 +60,7 @@ const LoginForm = () => {
               />
             </svg>
           </span>
-          Sign in
+          {lang("login")}
         </button>
       </div>
     </form>

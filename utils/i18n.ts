@@ -9,13 +9,13 @@ import vnTranslations from "@/locales/vn/translations.json" assert {
 const systemLocale = Intl.DateTimeFormat().resolvedOptions().locale;
 
 i18next.init({
-  lng: "vn",
-  fallbackLng: "en",
+  lng: "en",
+  fallbackLng: "vi",
   resources: {
     en: {
       translation: enTranslations,
     },
-    vn: {
+    vi: {
       translation: vnTranslations,
     },
   },
@@ -25,4 +25,4 @@ const i18n = (lng?: string) => i18next.getFixedT(lng || systemLocale);
 
 export default i18n;
 
-export const lang = i18n("vn");
+export const lang = i18n();

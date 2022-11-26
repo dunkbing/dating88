@@ -1,4 +1,27 @@
 {
   "salutation": "Xin chao!",
-  "salutationWithName": "Chao {{name}}!"
+  "salutationWithName": "Chao {{name}}!",
+  "dating88": "Hẹn Hò",
+  "signUp": "Đăng ký",
+  "login": "Đăng nhập",
+  "createAnAccount": "Tạo tài khoản",
+  "createAnAccountSuccess": "Thành công. Vui lòng kiểm tra email của bạn để hoàn tất việc đăng ký.",
+  "signInToYourAccount": "Đăng nhập vào tài khoản của bạn",
+  "findGirlFriends": "Tìm bạn gái",
+  "findBoyFriends": "Tìm bạn trai",
+  "profileInfo": "Thông tin cá nhân",
+  "firstname": "Tên",
+  "lastname": "Họ",
+  "dateOfBirth": "Sinh nhật",
+  "gender": "Giới tính",
+  "city": "Tỉnh/Thành phố",
+  "education": "Học vấn",
+  "status": "Trạng thái",
+  "target": "Mục tiêu",
+  "height": "Chiều cao",
+  "weight": "Cân nặng",
+  "profileDesc": "Giới thiệu về bản thân",
+  "password": "Mật khẩu",
+  "forgotYourPassword": "Quên mật khẩu",
+  "save": "Lưu"
 }

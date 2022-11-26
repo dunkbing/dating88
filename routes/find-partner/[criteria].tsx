@@ -21,7 +21,8 @@ export const handler: Handlers<Query> = {
       const { data } = await getProfilesByCriteria(criteria, 0);
       const profiles: Profile[] = data?.map((d) => ({
         id: d.id,
-        fullname: `${d.lastname} ${d.firstname}`,
+        firstname: d.firstname,
+        lastname: d.lastname,
         gender: d.gender,
         target: d.target,
         status: d.status,

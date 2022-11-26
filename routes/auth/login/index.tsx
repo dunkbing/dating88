@@ -1,12 +1,14 @@
-import { JSX } from "preact/jsx-runtime";
+import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
+import { JSX } from "preact/jsx-runtime";
+import { setCookie } from "$std/http/cookie.ts";
 import * as redis from "redis";
-import Login from "@/islands/LoginForm.tsx";
+import LoginForm from "@/islands/LoginForm.tsx";
 import { Layout } from "@/islands/Nav.tsx";
 import { supabaseClient } from "@/utils/supabase.ts";
 import { redirect } from "@/utils/mod.ts";
-import { setCookie } from "$std/http/cookie.ts";
 import { USER_ID_COOKIE_NAME } from "@/utils/constants.ts";
+import { lang } from "@/utils/i18n.ts";
 
 interface Query {
   error: Error | null;
@@ -28,15 +30,16 @@ export const handler: Handlers<Query, State> = {
       email: body.email,
       password: body.password,
     });
-    console.log("login", data);
+    console.log("login", data, error);
 
-    const resp = data ? redirect("/") : await ctx.render({ error });
+    const resp = data.user ? redirect("/") : await ctx.render({ error });
 
     if (data.user) {
       setCookie(resp.headers, {
         name: USER_ID_COOKIE_NAME,
         value: data.user.id,
         maxAge: data.session?.expires_in,
+        path: "/",
       });
       await ctx.state.store.set(
         `user-${data.user.id}`,
@@ -46,31 +49,36 @@ export const handler: Handlers<Query, State> = {
         },
       );
     }
+
     return resp;
   },
 };
 
-const PageLogin = ({ data }: PageProps<Query>) => {
+const LoginPage = ({ data }: PageProps<Query>) => {
   const { error } = data;
   return (
     <Layout data={data}>
-      <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-md w-full">
-          <div>
-            <img class="mx-auto h-12 w-auto" src="/logo.svg" alt="Workflow" />
-            <h2 class="mt-6 mb-8 text-center text-3xl tracking-tight font-bold text-gray-900">
-              Sign in to your account
-            </h2>
-            {error ? <p class="text-red-500">{error.message}</p> : ""}
-          </div>
-          <Login />
-          {
-            /* <LoginOAuth provider="github">Sign in with Github</LoginOAuth>
+      <>
+        <Head>
+          <title>{lang("login")}</title>
+        </Head>
+        <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+          <div class="max-w-md w-full">
+            <div>
+              <h2 class="mt-6 mb-8 text-center text-3xl tracking-tight font-bold text-gray-900">
+                {lang("signInToYourAccount")}
+              </h2>
+              {error ? <p class="text-red-500">{error.message}</p> : ""}
+            </div>
+            <LoginForm />
+            {
+              /* <LoginOAuth provider="github">Sign in with Github</LoginOAuth>
           <LoginOAuth provider="discord">Sign in with Discord</LoginOAuth> */
-          }
+            }
+          </div>
+          {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
         </div>
-        {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
-      </div>
+      </>
     </Layout>
   );
 };
@@ -105,4 +113,4 @@ export const LoginOAuth = ({ provider, children }: LoginOAuthProps) => (
   </a>
 );
 
-export default PageLogin;
+export default LoginPage;

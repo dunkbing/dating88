@@ -5,6 +5,7 @@ import { JSX } from "preact/jsx-runtime";
 import { Footer } from "@/components/Footer.tsx";
 import { Gender, Profile, Supabase, titleGenderMap } from "@/utils/types.ts";
 import { ProfileMenu } from "../components/ProfileMenu.tsx";
+import { lang } from "../utils/i18n.ts";
 
 interface Props {
   user?: Supabase.User;
@@ -15,10 +16,10 @@ const AuthMenu = () => {
     tw`inline-block text-sm px-4 py-2 mx-1 leading-none border rounded text-white border-white hover:border-transparent hover:bg-pink-400 mt-4 md:mt-0`;
   return (
     <div>
-      <a href="/login" class={buttonStyle}>
+      <a href="/auth/login" class={buttonStyle}>
         Login
       </a>
-      <a href="/signup" class={buttonStyle}>
+      <a href="/auth/signup" class={buttonStyle}>
         Signup
       </a>
     </div>
@@ -74,7 +75,7 @@ const Nav = (props: Props) => {
   }, []);
 
   return (
-    <div class="bg-pink-500">
+    <div class="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
       <nav class="flex items-center justify-between flex-wrap p-4 max-w-screen-md mx-auto">
         <div class="flex items-center flex-shrink-0 text-white mr-6">
           <a href="/">
@@ -85,7 +86,9 @@ const Nav = (props: Props) => {
             />
           </a>
           <a href="/">
-            <span class="font-semibold text-xl tracking-tight">Hẹn Hò</span>
+            <span class="font-semibold text-xl tracking-tight">
+              {lang("dating88")}
+            </span>
           </a>
         </div>
         <div class="block md:hidden">

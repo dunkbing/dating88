@@ -1,4 +1,27 @@
 {
   "salutation": "Hello World!",
-  "salutationWithName": "Hello {{name}}!"
+  "salutationWithName": "Hello {{name}}!",
+  "dating88": "Dating88",
+  "signUp": "Sign up",
+  "login": "Login",
+  "createAnAccount": "Create an account",
+  "createAnAccountSuccess": "Success. Please check your email to complete the registration.",
+  "signInToYourAccount": "Sign in to your account",
+  "findGirlFriends": "Find girl friends",
+  "findBoyFriends": "Find boy friends",
+  "profileInfo": "Profile information",
+  "firstname": "Firstname",
+  "lastname": "Lastname",
+  "dateOfBirth": "Date of birth",
+  "gender": "Gender",
+  "city": "City",
+  "education": "Education",
+  "status": "Status",
+  "target": "Target",
+  "height": "Height",
+  "weight": "Weight",
+  "profileDesc": "Introduction",
+  "password": "Password",
+  "forgotYourPassword": "Forgot your password",
+  "save": "Save"
 }

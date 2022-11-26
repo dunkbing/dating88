@@ -16,3 +16,10 @@ export function getAge(dateString?: string) {
   }
   return age;
 }
+
+export function fromFormData<T = any>(formData: FormData) {
+  const res: Record<string, string> = {};
+  formData.forEach((v, k) => (res[k] = v as string));
+
+  return res as T;
+}

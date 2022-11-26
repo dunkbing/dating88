@@ -22,7 +22,6 @@ export const handler: Handlers<Query> = {
       return ctx.render({
         profile: {
           ...profile,
-          fullname: `${profile.lastname} ${profile.firstname}`,
           city: profile.cities.name,
           dateOfBirth: profile.date_of_birth,
         },
@@ -30,7 +29,7 @@ export const handler: Handlers<Query> = {
       });
     }
 
-    return redirect("/profile/not-found");
+    return redirect("/_404");
   },
 };
 

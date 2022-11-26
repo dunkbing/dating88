@@ -43,7 +43,6 @@ export const handler: MiddlewareHandler = async (req, ctx) => {
   const { pathname } = new URL(req.url);
   const withSession = ["/", "/login", "/signup", "/logout", "/account"];
   ctx.state.store = store;
-  // const resp = await setupUserSession(req, ctx);
   let resp: Response;
   if (
     withSession.includes(pathname) ||

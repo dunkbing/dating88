@@ -1,4 +1,5 @@
 export type City = {
+  id: number;
   name: string;
   slug: string;
   type: string;
@@ -6,7 +7,7 @@ export type City = {
   code: string;
 };
 
-export const cities: Record<string, City> = {
+export const cities: Record<string, Omit<City, "id">> = {
   "01": {
     name: "Hà Nội",
     slug: "ha-noi",

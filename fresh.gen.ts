@@ -3,22 +3,24 @@
 // This file is automatically updated during development when running `dev.ts`.
 
 import config from "./deno.json" assert { type: "json" };
-import * as $0 from "./routes/[name].tsx";
-import * as $1 from "./routes/_404.tsx";
-import * as $2 from "./routes/_500.tsx";
-import * as $3 from "./routes/_middleware.ts";
+import * as $0 from "./routes/_404.tsx";
+import * as $1 from "./routes/_500.tsx";
+import * as $2 from "./routes/_middleware.ts";
+import * as $3 from "./routes/api/get-cities.ts";
 import * as $4 from "./routes/api/get-profiles.ts";
-import * as $5 from "./routes/api/joke.ts";
-import * as $6 from "./routes/error.tsx";
-import * as $7 from "./routes/find-partner/[criteria].tsx";
-import * as $8 from "./routes/index.tsx";
-import * as $9 from "./routes/login/[provider].tsx";
-import * as $10 from "./routes/login/_middleware.ts";
-import * as $11 from "./routes/login/index.tsx";
-import * as $12 from "./routes/logout.tsx";
-import * as $13 from "./routes/profile/[id].tsx";
-import * as $14 from "./routes/profile/setting.tsx";
-import * as $15 from "./routes/signup.tsx";
+import * as $5 from "./routes/api/get-user.ts";
+import * as $6 from "./routes/api/joke.ts";
+import * as $7 from "./routes/auth/login/[provider].tsx";
+import * as $8 from "./routes/auth/login/_middleware.ts";
+import * as $9 from "./routes/auth/login/index.tsx";
+import * as $10 from "./routes/auth/signup.tsx";
+import * as $11 from "./routes/auth/verify.tsx";
+import * as $12 from "./routes/error.tsx";
+import * as $13 from "./routes/find-partner/[criteria].tsx";
+import * as $14 from "./routes/index.tsx";
+import * as $15 from "./routes/logout.tsx";
+import * as $16 from "./routes/profile/[id].tsx";
+import * as $17 from "./routes/profile/setting.tsx";
 import * as $$0 from "./islands/Carousel.tsx";
 import * as $$1 from "./islands/LoginForm.tsx";
 import * as $$2 from "./islands/Nav.tsx";
@@ -30,25 +32,28 @@ import * as $$7 from "./islands/ProfileSetting.tsx";
 import * as $$8 from "./islands/SecondaryProfileCard.tsx";
 import * as $$9 from "./islands/SecondaryTab.tsx";
 import * as $$10 from "./islands/SignupForm.tsx";
+import * as $$11 from "./islands/Verify.tsx";
 
 const manifest = {
   routes: {
-    "./routes/[name].tsx": $0,
-    "./routes/_404.tsx": $1,
-    "./routes/_500.tsx": $2,
-    "./routes/_middleware.ts": $3,
+    "./routes/_404.tsx": $0,
+    "./routes/_500.tsx": $1,
+    "./routes/_middleware.ts": $2,
+    "./routes/api/get-cities.ts": $3,
     "./routes/api/get-profiles.ts": $4,
-    "./routes/api/joke.ts": $5,
-    "./routes/error.tsx": $6,
-    "./routes/find-partner/[criteria].tsx": $7,
-    "./routes/index.tsx": $8,
-    "./routes/login/[provider].tsx": $9,
-    "./routes/login/_middleware.ts": $10,
-    "./routes/login/index.tsx": $11,
-    "./routes/logout.tsx": $12,
-    "./routes/profile/[id].tsx": $13,
-    "./routes/profile/setting.tsx": $14,
-    "./routes/signup.tsx": $15,
+    "./routes/api/get-user.ts": $5,
+    "./routes/api/joke.ts": $6,
+    "./routes/auth/login/[provider].tsx": $7,
+    "./routes/auth/login/_middleware.ts": $8,
+    "./routes/auth/login/index.tsx": $9,
+    "./routes/auth/signup.tsx": $10,
+    "./routes/auth/verify.tsx": $11,
+    "./routes/error.tsx": $12,
+    "./routes/find-partner/[criteria].tsx": $13,
+    "./routes/index.tsx": $14,
+    "./routes/logout.tsx": $15,
+    "./routes/profile/[id].tsx": $16,
+    "./routes/profile/setting.tsx": $17,
   },
   islands: {
     "./islands/Carousel.tsx": $$0,
@@ -62,6 +67,7 @@ const manifest = {
     "./islands/SecondaryProfileCard.tsx": $$8,
     "./islands/SecondaryTab.tsx": $$9,
     "./islands/SignupForm.tsx": $$10,
+    "./islands/Verify.tsx": $$11,
   },
   baseUrl: import.meta.url,
   config,

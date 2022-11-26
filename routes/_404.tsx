@@ -1,6 +1,5 @@
 import { Head } from "$fresh/runtime.ts";
 import { PageProps } from "$fresh/server.ts";
-import * as redis from "redis";
 import { Layout } from "@/islands/Nav.tsx";
 import { Supabase } from "@/utils/types.ts";
 

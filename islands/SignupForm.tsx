@@ -1,7 +1,35 @@
+import { lang } from "../utils/i18n.ts";
+
 const SignupForm = () => {
   return (
-    <form class="space-y-6 mt-8" action="/signup" method="POST">
+    <form class="space-y-6 mt-8" action="/auth/signup" method="POST">
       <div class="rounded-md shadow-sm -space-y-px">
+        <div>
+          <label for="firstname" class="sr-only">
+            {lang("firstname")}
+          </label>
+          <input
+            id="firstname"
+            name="firstname"
+            type="text"
+            required
+            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-pink-300 focus:border-pink-300 focus:z-10 sm:text-sm"
+            placeholder={lang("firstname")}
+          />
+        </div>
+        <div>
+          <label for="lastname" class="sr-only">
+            {lang("lastname")}
+          </label>
+          <input
+            id="lastname"
+            name="lastname"
+            type="text"
+            required
+            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-pink-300 focus:border-pink-300 focus:z-10 sm:text-sm"
+            placeholder={lang("lastname")}
+          />
+        </div>
         <div>
           <label for="email" class="sr-only">
             Email address
@@ -17,7 +45,7 @@ const SignupForm = () => {
         </div>
         <div>
           <label for="password" class="sr-only">
-            Password
+            {lang("password")}
           </label>
           <input
             id="password"
@@ -26,7 +54,7 @@ const SignupForm = () => {
             autocomplete="current-password"
             required
             class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-pink-300 focus:border-pink-300 focus:z-10 sm:text-sm"
-            placeholder="Password"
+            placeholder={lang("password")}
           />
         </div>
       </div>
@@ -37,14 +65,13 @@ const SignupForm = () => {
             href="/login"
             class="font-medium text-pink-400 hover:text-pink-300"
           >
-            Login instead
+            {lang("login")}
           </a>
         </div>
       </div>
       <div>
         <button
           type="submit"
-          id="login-submit"
           class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-pink-400 hover:bg-pink-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-300"
         >
           <span class="absolute left-0 inset-y-0 flex items-center pl-3">
@@ -62,7 +89,7 @@ const SignupForm = () => {
               />
             </svg>
           </span>
-          Create my Account
+          {lang("createAnAccount")}
         </button>
       </div>
     </form>

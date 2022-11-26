@@ -1,5 +1,6 @@
 import { z } from "zod";
-import { City } from "./cities.ts";
+import { City } from "@/utils/cities.ts";
+import { lang } from "@/utils/i18n.ts";
 
 export enum Gender {
   MALE = "male",
@@ -16,8 +17,8 @@ export const genderMap: { [key in Gender]: string } = {
 };
 
 export const titleGenderMap: Record<string, string> = {
-  [Gender.MALE]: "Tìm bạn trai",
-  [Gender.FEMALE]: "Tìm bạn gái",
+  [Gender.MALE]: lang("findBoyFriends"),
+  [Gender.FEMALE]: lang("findGirlFriends"),
   [Gender.GAY]: "Gay",
   [Gender.LES]: "Les",
 };
@@ -60,22 +61,26 @@ export enum Education {
 }
 
 export const educationMap: { [key in Education]: string } = {
-  [Education.HIGH_SCHOOL]: "",
-  [Education.COLLEGE]: "",
-  [Education.MASTER]: "",
-  [Education.PHD]: "",
+  [Education.HIGH_SCHOOL]: "trung học phổ thông",
+  [Education.COLLEGE]: "đại học",
+  [Education.MASTER]: "thạc sĩ",
+  [Education.PHD]: "tiến sĩ",
 };
 
-export const RegisterUser = z.object({
+export const userCreate = z.object({
   firstname: z.string().min(1),
   lastname: z.string().min(1),
   email: z.string().email({ message: "email khong hop le" }),
   password: z.string().min(5, { message: "mat khau phai co it nhat 5 ky tu" }),
 });
 
+export type UserCreate = z.infer<typeof userCreate>;
+
 export interface Profile {
   id: number;
-  fullname: string;
+  email?: string;
+  firstname: string;
+  lastname: string;
   gender: Gender;
   status: Status;
   target: Target;
@@ -84,12 +89,41 @@ export interface Profile {
   dateOfBirth?: string;
   height?: number;
   weight?: number;
+  education?: Education;
 }
+
+const genders = [...(Object.values(Gender) as [string, ...string[]])] as const;
+const statuses = [...(Object.values(Status) as [string, ...string[]])] as const;
+const targets = [...(Object.values(Target) as [string, ...string[]])] as const;
+const educations = [
+  ...(Object.values(Education) as [string, ...string[]]),
+] as const;
+
+export const profileUpdate = z.object({
+  firstname: z.string().min(1),
+  lastname: z.string().min(1),
+  gender: z.enum(genders),
+  status: z.enum(statuses),
+  target: z.enum(targets),
+  description: z.string(),
+  city_id: z.number(),
+  date_of_birth: z.date(),
+  height: z.number(),
+  weight: z.number(),
+  education: z.enum(educations),
+});
+
+export type ProfileUpdate = z.infer<typeof profileUpdate>;
+
+export type UserLogin = {
+  email: string;
+};
 
 export const tables = {
   users: "users",
   profiles: "profiles",
   profileViews: "profile_views",
+  cities: "cities",
 };
 
 export namespace Supabase {

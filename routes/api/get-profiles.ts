@@ -24,7 +24,6 @@ async function getProfiles(type: string, gender: Gender) {
     .order("views", { ascending: false })
     .range(0, 10);
   const profileIds = data?.map((d) => d.profile_id) || [];
-  console.log(profileIds);
   const mostViewsQuery = supabaseClient
     .from(tables.profiles)
     .select(fields)
@@ -44,7 +43,8 @@ export const handler: Handlers<Query> = {
       const { data } = await query;
       const profiles: Profile[] = data?.map((d) => ({
         id: d.id,
-        fullname: `${d.lastname} ${d.firstname}`,
+        firstname: d.firstname,
+        lastname: d.lastname,
         gender: d.gender,
         target: d.target,
         status: d.status,

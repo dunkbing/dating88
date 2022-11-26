@@ -30,10 +30,10 @@ export default function ({ profile }: Props) {
         </div>
         <div class="mt-2 border-b pb-2">
           <h1 class="text-4xl font-medium text-gray-700 capitalize">
-            {profile.fullname},{" "}
+            {`${profile.lastname} ${profile.firstname}`},{" "}
             {profile.dateOfBirth && (
               <span class="font-light text-gray-500">
-                {getAge(profile.dateOfBirth)} tuổi
+                {getAge(profile.dateOfBirth)}
               </span>
             )}
           </h1>
@@ -43,11 +43,11 @@ export default function ({ profile }: Props) {
             {profile.height}
             cm - Nặng {profile.weight} kg - Đại học
           </p>
-          <p class="mt-3 text-gray-500">
+          <p class="font-light mt-3 text-gray-600">
             Mục tiêu: {targetMap[profile.target]}
           </p>
         </div>
-        <p class="text-gray-600 font-light mt-2">{profile.description}</p>
+        <p class="text-gray-600 mt-2">{profile.description}</p>
       </div>
     </div>
   );

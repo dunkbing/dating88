@@ -24,16 +24,17 @@ export default function PrimaryProfileCard(props: Props) {
 
   return (
     <>
-      <div className="w-full lg:flex my-2">
-        <div class="w-36 h-auto">
-          <img class="w-full rounded-xl" src="/haibara.webp" />
+      <div className="w-full h-auto flex my-2">
+        <div class="w-1/4 my-auto">
+          <img class="w-2/3 rounded-xl mx-auto" src="/haibara.webp" />
         </div>
-        <div className="w-2/3 border-r border-b border-l border-gray-50 lg:border-l-0 lg:border-t bg-white rounded-b lg:rounded-r pl-4">
+        <div className="w-3/4 border-r border-b border-l border-gray-50 lg:border-l-0 lg:border-t bg-white rounded-b lg:rounded-r pl-4">
           <a
             class="text-xl text-purple-800 font-semibold capitalize"
             href={`/profile/${props.id}`}
           >
-            {props.fullname} - {getAge(props.dateOfBirth)}
+            {`${props.lastname} ${props.firstname}`} -{" "}
+            {getAge(props.dateOfBirth)}
           </a>
           <div class="font-medium flex items-center space-x-2">
             {links.map(([to, text], i) => (
@@ -43,7 +44,7 @@ export default function PrimaryProfileCard(props: Props) {
               </>
             ))}
           </div>
-          <p className="text-gray-900 text-lg">{props.description}</p>
+          <p className="w-5/6 text-gray-900 text-lg">{props.description}</p>
         </div>
       </div>
     </>
