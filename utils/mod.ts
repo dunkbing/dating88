@@ -1,3 +1,5 @@
+import * as base64 from "$std/encoding/base64.ts";
+
 export const redirect = (Location: string) =>
   new Response(null, {
     status: 302,
@@ -22,4 +24,12 @@ export function fromFormData<T = any>(formData: FormData) {
   formData.forEach((v, k) => (res[k] = v as string));
 
   return res as T;
+}
+
+export function getRoomCode(input: string[]) {
+  return base64.encode(input.sort().join("-")).substring(0, 25);
+}
+
+export function getAvatar(name: string) {
+  return `https://eu.ui-avatars.com/api/?name=${name}&size=1000`;
 }

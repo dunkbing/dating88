@@ -6,68 +6,80 @@ import config from "./deno.json" assert { type: "json" };
 import * as $0 from "./routes/_404.tsx";
 import * as $1 from "./routes/_500.tsx";
 import * as $2 from "./routes/_middleware.ts";
-import * as $3 from "./routes/api/get-cities.ts";
-import * as $4 from "./routes/api/get-profiles.ts";
-import * as $5 from "./routes/api/get-user.ts";
-import * as $6 from "./routes/api/joke.ts";
-import * as $7 from "./routes/auth/login/[provider].tsx";
-import * as $8 from "./routes/auth/login/_middleware.ts";
-import * as $9 from "./routes/auth/login/index.tsx";
-import * as $10 from "./routes/auth/signup.tsx";
-import * as $11 from "./routes/auth/verify.tsx";
-import * as $12 from "./routes/error.tsx";
-import * as $13 from "./routes/find-partner/[criteria].tsx";
-import * as $14 from "./routes/index.tsx";
-import * as $15 from "./routes/logout.tsx";
-import * as $16 from "./routes/profile/[id].tsx";
-import * as $17 from "./routes/profile/setting.tsx";
-import * as $$0 from "./islands/Carousel.tsx";
-import * as $$1 from "./islands/LoginForm.tsx";
-import * as $$2 from "./islands/Nav.tsx";
-import * as $$3 from "./islands/Pagination.tsx";
-import * as $$4 from "./islands/PrimaryProfileCard.tsx";
-import * as $$5 from "./islands/PrimaryTab.tsx";
-import * as $$6 from "./islands/Profile.tsx";
-import * as $$7 from "./islands/ProfileSetting.tsx";
-import * as $$8 from "./islands/SecondaryProfileCard.tsx";
-import * as $$9 from "./islands/SecondaryTab.tsx";
-import * as $$10 from "./islands/SignupForm.tsx";
-import * as $$11 from "./islands/Verify.tsx";
+import * as $3 from "./routes/api/chat/connect.ts";
+import * as $4 from "./routes/api/chat/send.ts";
+import * as $5 from "./routes/api/get-cities.ts";
+import * as $6 from "./routes/api/get-profiles.ts";
+import * as $7 from "./routes/api/get-user.ts";
+import * as $8 from "./routes/api/joke.ts";
+import * as $9 from "./routes/auth/login/[provider].tsx";
+import * as $10 from "./routes/auth/login/_middleware.ts";
+import * as $11 from "./routes/auth/login/index.tsx";
+import * as $12 from "./routes/auth/signup.tsx";
+import * as $13 from "./routes/auth/verify.tsx";
+import * as $14 from "./routes/chat/[room_code].tsx";
+import * as $15 from "./routes/chat/index.tsx";
+import * as $16 from "./routes/error.tsx";
+import * as $17 from "./routes/find-partner/[criteria].tsx";
+import * as $18 from "./routes/index.tsx";
+import * as $19 from "./routes/logout.tsx";
+import * as $20 from "./routes/profile/[id].tsx";
+import * as $21 from "./routes/profile/setting.tsx";
+import * as $$0 from "./islands/AddRoom.tsx";
+import * as $$1 from "./islands/Carousel.tsx";
+import * as $$2 from "./islands/Chat.tsx";
+import * as $$3 from "./islands/LoginForm.tsx";
+import * as $$4 from "./islands/Nav.tsx";
+import * as $$5 from "./islands/Pagination.tsx";
+import * as $$6 from "./islands/PrimaryProfileCard.tsx";
+import * as $$7 from "./islands/PrimaryTab.tsx";
+import * as $$8 from "./islands/Profile.tsx";
+import * as $$9 from "./islands/ProfileSetting.tsx";
+import * as $$10 from "./islands/SecondaryProfileCard.tsx";
+import * as $$11 from "./islands/SecondaryTab.tsx";
+import * as $$12 from "./islands/SignupForm.tsx";
+import * as $$13 from "./islands/Verify.tsx";
 
 const manifest = {
   routes: {
     "./routes/_404.tsx": $0,
     "./routes/_500.tsx": $1,
     "./routes/_middleware.ts": $2,
-    "./routes/api/get-cities.ts": $3,
-    "./routes/api/get-profiles.ts": $4,
-    "./routes/api/get-user.ts": $5,
-    "./routes/api/joke.ts": $6,
-    "./routes/auth/login/[provider].tsx": $7,
-    "./routes/auth/login/_middleware.ts": $8,
-    "./routes/auth/login/index.tsx": $9,
-    "./routes/auth/signup.tsx": $10,
-    "./routes/auth/verify.tsx": $11,
-    "./routes/error.tsx": $12,
-    "./routes/find-partner/[criteria].tsx": $13,
-    "./routes/index.tsx": $14,
-    "./routes/logout.tsx": $15,
-    "./routes/profile/[id].tsx": $16,
-    "./routes/profile/setting.tsx": $17,
+    "./routes/api/chat/connect.ts": $3,
+    "./routes/api/chat/send.ts": $4,
+    "./routes/api/get-cities.ts": $5,
+    "./routes/api/get-profiles.ts": $6,
+    "./routes/api/get-user.ts": $7,
+    "./routes/api/joke.ts": $8,
+    "./routes/auth/login/[provider].tsx": $9,
+    "./routes/auth/login/_middleware.ts": $10,
+    "./routes/auth/login/index.tsx": $11,
+    "./routes/auth/signup.tsx": $12,
+    "./routes/auth/verify.tsx": $13,
+    "./routes/chat/[room_code].tsx": $14,
+    "./routes/chat/index.tsx": $15,
+    "./routes/error.tsx": $16,
+    "./routes/find-partner/[criteria].tsx": $17,
+    "./routes/index.tsx": $18,
+    "./routes/logout.tsx": $19,
+    "./routes/profile/[id].tsx": $20,
+    "./routes/profile/setting.tsx": $21,
   },
   islands: {
-    "./islands/Carousel.tsx": $$0,
-    "./islands/LoginForm.tsx": $$1,
-    "./islands/Nav.tsx": $$2,
-    "./islands/Pagination.tsx": $$3,
-    "./islands/PrimaryProfileCard.tsx": $$4,
-    "./islands/PrimaryTab.tsx": $$5,
-    "./islands/Profile.tsx": $$6,
-    "./islands/ProfileSetting.tsx": $$7,
-    "./islands/SecondaryProfileCard.tsx": $$8,
-    "./islands/SecondaryTab.tsx": $$9,
-    "./islands/SignupForm.tsx": $$10,
-    "./islands/Verify.tsx": $$11,
+    "./islands/AddRoom.tsx": $$0,
+    "./islands/Carousel.tsx": $$1,
+    "./islands/Chat.tsx": $$2,
+    "./islands/LoginForm.tsx": $$3,
+    "./islands/Nav.tsx": $$4,
+    "./islands/Pagination.tsx": $$5,
+    "./islands/PrimaryProfileCard.tsx": $$6,
+    "./islands/PrimaryTab.tsx": $$7,
+    "./islands/Profile.tsx": $$8,
+    "./islands/ProfileSetting.tsx": $$9,
+    "./islands/SecondaryProfileCard.tsx": $$10,
+    "./islands/SecondaryTab.tsx": $$11,
+    "./islands/SignupForm.tsx": $$12,
+    "./islands/Verify.tsx": $$13,
   },
   baseUrl: import.meta.url,
   config,

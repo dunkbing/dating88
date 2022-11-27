@@ -8,12 +8,14 @@
     "@preact/signals": "https://esm.sh/*@preact/signals@1.0.3",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.0.1",
     "twind": "https://esm.sh/twind@0.16.17",
+    "twas": "https://esm.sh/twas@2.1.2",
     "twind/": "https://esm.sh/twind@0.16.17/",
     "envalid": "https://deno.land/x/envalid@0.1.2/mod.ts",
     "redis": "https://deno.land/x/redis@v0.27.4/mod.ts",
     "$std/": "https://deno.land/std@0.165.0/",
     "zod": "https://deno.land/x/zod/mod.ts",
     "i18next": "https://deno.land/x/i18next@v22.0.6/index.js",
+    "emojify": "https://esm.sh/@twuni/emojify@1.0.2",
     "supabase": "https://esm.sh/@supabase/supabase-js@2.1.0"
   }
 }

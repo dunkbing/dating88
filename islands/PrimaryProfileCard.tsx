@@ -24,11 +24,11 @@ export default function PrimaryProfileCard(props: Props) {
 
   return (
     <>
-      <div className="w-full h-auto flex my-2">
+      <div className="w-full h-auto flex my-2 bg-pink-50 rounded-xl">
         <div class="w-1/4 my-auto">
           <img class="w-2/3 rounded-xl mx-auto" src="/haibara.webp" />
         </div>
-        <div className="w-3/4 border-r border-b border-l border-gray-50 lg:border-l-0 lg:border-t bg-white rounded-b lg:rounded-r pl-4">
+        <div className="w-3/4 border-r border-b border-l border-gray-50 lg:border-l-0 lg:border-t rounded-2xl lg:rounded-r pl-4">
           <a
             class="text-xl text-purple-800 font-semibold capitalize"
             href={`/profile/${props.id}`}

@@ -124,6 +124,8 @@ export const tables = {
   profiles: "profiles",
   profileViews: "profile_views",
   cities: "cities",
+  rooms: "rooms",
+  messages: "messages",
 };
 
 export namespace Supabase {

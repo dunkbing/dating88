@@ -9,6 +9,7 @@ import { lang } from "../utils/i18n.ts";
 
 interface Props {
   user?: Supabase.User;
+  profile?: Profile;
 }
 
 const AuthMenu = () => {
@@ -125,7 +126,9 @@ const Nav = (props: Props) => {
                   {titleGenderMap[Gender.GAY]}
                 </a>
               </div>
-              {props.user ? <ProfileMenu /> : <AuthMenu />}
+              {props.user
+                ? <ProfileMenu name={props.profile?.firstname} />
+                : <AuthMenu />}
             </div>
           )
           : (
@@ -147,7 +150,8 @@ interface LayoutProps {
 
 export const Layout = ({ children, user, data }: LayoutProps) => {
   return (
-    <>
+    <div class="bg-pink-100">
+      <div class="absolute top-0 left-0 w-full min-h-screen -z-10 object-cover" />
       <Nav user={user} />
       {children}
       <Footer />
@@ -158,6 +162,6 @@ export const Layout = ({ children, user, data }: LayoutProps) => {
         ''
       )} */
       }
-    </>
+    </div>
   );
 };

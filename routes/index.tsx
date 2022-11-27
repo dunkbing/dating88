@@ -50,7 +50,7 @@ export default function Home(ctx: PageProps<Query>) {
         <Head>
           <title>{lang("dating88")}</title>
         </Head>
-        <div class="p-4 mx-auto max-w-screen-xl flex lg:flex-row md:flex-col">
+        <div class="p-4 mx-auto max-w-screen-xl flex lg:flex-row md:flex-col space-x-4">
           <div class="md:w-2/3">
             <PrimaryTab title="Kết bạn bốn phương" profiles={mainProfiles} />
             <Pagination pageCount={totalPage || 1} currentPage={page} />

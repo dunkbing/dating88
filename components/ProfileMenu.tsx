@@ -1,6 +1,7 @@
 import { useState } from "preact/hooks";
+import { getAvatar } from "@/utils/mod.ts";
 
-export function ProfileMenu() {
+export function ProfileMenu(props: { name?: string }) {
   const [showMenu, setShowMenu] = useState<"" | "hidden">("hidden");
 
   function handleClick() {
@@ -17,7 +18,7 @@ export function ProfileMenu() {
         >
           <img
             class="h-full w-full object-cover"
-            src="https://eu.ui-avatars.com/api/?name=Binh&size=1000"
+            src={getAvatar(`${props.name}`)}
             alt="avatar"
           />
         </button>
