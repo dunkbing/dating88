@@ -5,7 +5,7 @@ import Gap from "@/components/Gap.tsx";
 import PrimaryTab from "@/islands/PrimaryTab.tsx";
 import SecondaryTab from "@/islands/SecondaryTab.tsx";
 import { Profile, Supabase } from "@/utils/types.ts";
-import { getProfiles } from "@/utils/profile.ts";
+import { getProfileByUserId, getProfiles } from "@/utils/profile.ts";
 import Pagination from "@/islands/Pagination.tsx";
 import { Footer } from "@/components/Footer.tsx";
 import { JSX } from "preact/jsx-runtime";
@@ -17,6 +17,7 @@ interface Query {
   page: number;
   totalPage: number | null;
   user: Supabase.User;
+  profile: Profile;
 }
 
 export const handler: Handlers<Query> = {
@@ -36,16 +37,23 @@ export const handler: Handlers<Query> = {
       dateOfBirth: d.date_of_birth,
     })) || [];
     const user = ctx.state.user as Supabase.User;
+    const profile = await getProfileByUserId(user.id);
 
-    return ctx.render({ mainProfiles, page, totalPage, user });
+    return ctx.render({
+      mainProfiles,
+      page,
+      totalPage,
+      user,
+      profile: { ...profile },
+    });
   },
 };
 
 export default function Home(ctx: PageProps<Query>) {
-  const { mainProfiles, page, totalPage, user } = ctx.data;
+  const { mainProfiles, page, totalPage, user, profile } = ctx.data;
 
   return (
-    <Layout user={user}>
+    <Layout user={user} profile={profile}>
       <div>
         <Head>
           <title>{lang("dating88")}</title>

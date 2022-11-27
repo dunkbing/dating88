@@ -77,14 +77,15 @@ export const userCreate = z.object({
 export type UserCreate = z.infer<typeof userCreate>;
 
 export interface Profile {
-  id: number;
+  id?: number;
   email?: string;
-  firstname: string;
-  lastname: string;
-  gender: Gender;
-  status: Status;
-  target: Target;
-  description: string;
+  user_id?: string;
+  firstname?: string;
+  lastname?: string;
+  gender?: Gender;
+  status?: Status;
+  target?: Target;
+  description?: string;
   city?: City;
   dateOfBirth?: string;
   height?: number;

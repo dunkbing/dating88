@@ -127,7 +127,12 @@ const Nav = (props: Props) => {
                 </a>
               </div>
               {props.user
-                ? <ProfileMenu name={props.profile?.firstname} />
+                ? (
+                  <ProfileMenu
+                    name={props.profile?.firstname}
+                    id={props.profile?.id}
+                  />
+                )
                 : <AuthMenu />}
             </div>
           )
@@ -144,15 +149,16 @@ export default Nav;
 interface LayoutProps {
   children: JSX.Element;
   user?: Supabase.User;
+  profile?: Profile;
   // deno-lint-ignore no-explicit-any
   data?: any;
 }
 
-export const Layout = ({ children, user, data }: LayoutProps) => {
+export const Layout = ({ children, user, data, profile }: LayoutProps) => {
   return (
     <div class="bg-pink-100">
       <div class="absolute top-0 left-0 w-full min-h-screen -z-10 object-cover" />
-      <Nav user={user} />
+      <Nav user={user} profile={profile} />
       {children}
       <Footer />
       {

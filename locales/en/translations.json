@@ -23,5 +23,9 @@
   "profileDesc": "Introduction",
   "password": "Password",
   "forgotYourPassword": "Forgot your password",
+  "profile": "Profile",
+  "message": "Message",
+  "report": "Report",
+  "like": "Like",
   "save": "Save"
 }
