@@ -49,7 +49,8 @@ export const handler: MiddlewareHandler = async (req, ctx) => {
     pathname.startsWith("/login") ||
     pathname.startsWith("/api") ||
     pathname.startsWith("/find-partner") ||
-    pathname.startsWith("/profile")
+    pathname.startsWith("/profile") ||
+    pathname.startsWith("/chat")
   ) {
     ctx.state.DENO_ENV = DENO_ENV;
     resp = await setupUserSession(req, ctx);

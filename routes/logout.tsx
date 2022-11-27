@@ -25,8 +25,7 @@ export const handler: Handlers<Query, State> = {
         deleteCookie(resp.headers, USER_ID_COOKIE_NAME);
         await ctx.state.store.del(userRedisKey(cookies[USER_ID_COOKIE_NAME]));
       }
-      const { error } = await supabaseClient.auth.signOut();
-      console.log("signout error", error);
+      await supabaseClient.auth.signOut();
     }
 
     return resp;

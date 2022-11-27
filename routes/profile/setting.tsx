@@ -26,15 +26,6 @@ export const handler: Handlers<Query> = {
         profile: {
           ...profile,
           email: user?.email,
-          firstname: profile?.firstname,
-          lastname: profile?.lastname,
-          gender: profile?.gender,
-          status: profile?.status,
-          target: profile?.target,
-          description: profile?.description,
-          id: profile?.id,
-          city: profile?.cities,
-          dateOfBirth: profile?.date_of_birth,
         },
       })
       : redirect("/");

@@ -24,5 +24,5 @@ export const handler: Handlers = {
 };
 
 export const config: RouteConfig = {
-  routeOverride: "/api/connect/:room",
+  routeOverride: "/api/chat/connect/:room",
 };

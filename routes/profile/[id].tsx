@@ -21,11 +21,7 @@ export const handler: Handlers<Query> = {
     if (profile) {
       const user = ctx.state.user as Supabase.User;
       return ctx.render({
-        profile: {
-          ...profile,
-          city: profile.cities.name,
-          dateOfBirth: profile.date_of_birth,
-        },
+        profile,
         user,
       });
     }

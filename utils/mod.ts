@@ -1,4 +1,8 @@
 import * as base64 from "$std/encoding/base64.ts";
+import * as redis from "redis";
+import { MiddlewareHandler } from "$fresh/server.ts";
+import { getCookies } from "$std/http/cookie.ts";
+import { USER_ID_COOKIE_NAME, userRedisKey } from "./constants.ts";
 
 export const redirect = (Location: string) =>
   new Response(null, {
@@ -32,4 +36,22 @@ export function getRoomCode(input: string[]) {
 
 export function getAvatar(name: string) {
   return `https://eu.ui-avatars.com/api/?name=${name}&size=1000`;
+}
+
+export function privateRoute<T>(
+  redirectPath?: string,
+): MiddlewareHandler<T & { store: redis.Redis }> {
+  return async (req, ctx) => {
+    const cookies = getCookies(req.headers);
+    const user = await ctx.state.store.get(
+      userRedisKey(cookies[USER_ID_COOKIE_NAME]),
+    );
+    if (user) {
+      return await ctx.next();
+    }
+
+    return redirectPath
+      ? redirect(redirectPath)
+      : Response.json({ message: "Unauthorized" }, { status: 401 });
+  };
 }

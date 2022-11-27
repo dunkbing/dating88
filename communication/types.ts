@@ -9,7 +9,7 @@ export interface RoomTextChannelMessage extends MessageView {
 }
 
 export interface RoomIsTypingChannelMessage {
-  kind: "isTyping";
+  kind: "typing";
   from: UserView;
 }
 
@@ -30,8 +30,6 @@ export interface RoomView {
   lastMessageAt: string;
 }
 
-export type ApiSendMessage = ApiTextMessage | ApiIsTypingMessage;
-
 export interface ApiTextMessage {
   kind: "text";
   roomId: number;
@@ -39,9 +37,11 @@ export interface ApiTextMessage {
 }
 
 export interface ApiIsTypingMessage {
-  kind: "isTyping";
+  kind: "typing";
   roomId: number;
 }
+
+export type ApiSendMessage = ApiTextMessage | ApiIsTypingMessage;
 
 export const roomCreate = z.object({
   code: z.string().min(1),

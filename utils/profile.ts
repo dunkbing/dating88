@@ -2,6 +2,7 @@ import * as redis from "redis";
 import { supabaseClient } from "@/utils/supabase.ts";
 import {
   Gender,
+  Profile,
   ProfileUpdate,
   profileUpdate,
   Status,
@@ -34,7 +35,7 @@ export async function getProfiles(page: number, itemsPerPage = 10) {
   return { data, totalItems: count, totalPage };
 }
 
-export async function getProfile(id: number) {
+export async function getProfile(id: number): Promise<Profile> {
   const { data: profile } = await supabaseClient
     .from(tables.profiles)
     .select(
@@ -58,7 +59,11 @@ export async function getProfile(id: number) {
       });
   }
 
-  return profile;
+  return {
+    ...profile,
+    dateOfBirth: profile?.date_of_birth,
+    city: profile?.cities,
+  };
 }
 
 export async function createProfile(user: UserCreate) {
@@ -92,7 +97,7 @@ export async function updateProfile(userId: string, profile: ProfileUpdate) {
   return { data, error };
 }
 
-export async function getProfileByUserId(userId: string) {
+export async function getProfileByUserId(userId: string): Promise<Profile> {
   const { data: profile } = await supabaseClient
     .from(tables.profiles)
     .select(
@@ -101,7 +106,11 @@ export async function getProfileByUserId(userId: string) {
     .eq("user_id", userId)
     .single();
 
-  return profile;
+  return {
+    ...profile,
+    dateOfBirth: profile?.date_of_birth,
+    city: profile?.cities,
+  };
 }
 
 export async function getProfilesByCriteria(

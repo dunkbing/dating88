@@ -37,7 +37,7 @@ export const handler: Handlers<Query> = {
       dateOfBirth: d.date_of_birth,
     })) || [];
     const user = ctx.state.user as Supabase.User;
-    const profile = await getProfileByUserId(user.id);
+    const profile = await getProfileByUserId(user?.id);
 
     return ctx.render({
       mainProfiles,

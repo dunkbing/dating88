@@ -3,14 +3,17 @@ import twas from "twas";
 import type { MessageView, UserView } from "@/communication/types.ts";
 import { server } from "@/communication/server.ts";
 import { getAvatar } from "@/utils/mod.ts";
+import { Profile } from "../utils/types.ts";
 
 export default function Chat({
   roomId,
+  profile,
   roomName,
   initialMessages,
   user,
 }: {
   roomId: number;
+  profile: Profile;
   roomName: string;
   initialMessages: MessageView[];
   user: UserView;
@@ -33,7 +36,7 @@ export default function Chat({
 
     const subscription = server.subscribeMessages(roomId, (msg) => {
       switch (msg.kind) {
-        case "isTyping": {
+        case "typing": {
           if (typing) {
             clearInterval(typing.interval);
           }
@@ -72,7 +75,12 @@ export default function Chat({
     if (input === "") {
       return;
     }
-    server.sendMessage(roomId, input);
+    server.sendMessage({
+      roomId,
+      profileId: Number(profile.id),
+      name: `${profile.lastname} ${profile.firstname}`,
+      message: input,
+    });
     setInput("");
   };
 
@@ -107,7 +115,11 @@ export default function Chat({
           input={input}
           onInput={(input) => {
             setInput(input);
-            server.sendIsTyping(roomId);
+            server.sendIsTyping(
+              roomId,
+              Number(profile.id),
+              `${profile.lastname} ${profile.firstname}`,
+            );
           }}
           onSend={send}
         />

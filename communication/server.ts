@@ -9,7 +9,7 @@ export class Server {
     roomId: number,
     onMessage: (message: ChannelMessage) => void,
   ) {
-    const events = new EventSource(`/api/connect/${roomId}`);
+    const events = new EventSource(`/api/chat/connect/${roomId}`);
     const listener = (e: MessageEvent) => {
       const msg = JSON.parse(e.data) as ChannelMessage;
       onMessage(msg);
@@ -22,11 +22,23 @@ export class Server {
     };
   }
 
-  sendMessage(roomId: number, message: string) {
-    const data: ApiTextMessage = {
+  sendMessage({
+    roomId,
+    profileId,
+    name,
+    message,
+  }: {
+    roomId: number;
+    profileId: number;
+    name: string;
+    message: string;
+  }) {
+    const data: ApiTextMessage & { profileId: number; name: string } = {
       kind: "text",
       message,
       roomId,
+      profileId,
+      name,
     };
     fetch("/api/chat/send", {
       method: "POST",
@@ -34,10 +46,12 @@ export class Server {
     });
   }
 
-  sendIsTyping(roomId: number) {
-    const data: ApiIsTypingMessage = {
-      kind: "isTyping",
+  sendIsTyping(roomId: number, profileId: number, name: string) {
+    const data: ApiIsTypingMessage & { profileId: number; name: string } = {
+      kind: "typing",
       roomId,
+      profileId,
+      name,
     };
     fetch("/api/chat/send", {
       method: "POST",

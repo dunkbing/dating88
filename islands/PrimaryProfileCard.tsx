@@ -16,9 +16,9 @@ function Link(props: { to?: string; text?: string }) {
 
 export default function PrimaryProfileCard(props: Props) {
   const links = [
-    [props.gender, genderMap[props.gender]],
-    [props.status, statusMap[props.status]],
-    [props.target, targetMap[props.target]],
+    [props.gender, genderMap[props.gender!]],
+    [props.status, statusMap[props.status!]],
+    [props.target, targetMap[props.target!]],
     [props.city?.slug, props.city?.name],
   ];
 

@@ -37,7 +37,7 @@ export class RoomChannel {
 
   sendIsTyping(user: UserView) {
     const message: RoomIsTypingChannelMessage = {
-      kind: "isTyping",
+      kind: "typing",
       from: user,
     };
     this.#channel.postMessage(message);
